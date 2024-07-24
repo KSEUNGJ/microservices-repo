@@ -3,3 +3,4 @@ kind: Component
 resources:
 - prometheus.yaml
 - grafana.yaml
+- node-exporter.yaml
