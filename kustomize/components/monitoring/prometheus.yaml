@@ -72,6 +72,10 @@ data:
           action: replace
           target_label: kubernetes_pod_name
       - job_name: 'kubernetes-nodes'
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         kubernetes_sd_configs:
         - role: node
         relabel_configs:
@@ -86,19 +90,13 @@ data:
       - job_name: 'kubernetes-services'
         kubernetes_sd_configs:
         - role: service
-        metrics_path: /probe
-        params:
-          module: [http_2xx]
+        metrics_path: /metrics
         relabel_configs:
-        - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_probe]
+        - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
           action: keep
           regex: true
         - source_labels: [__address__]
-          target_label: __param_target
-        - target_label: __address__
-          replacement: blackbox-exporter.example.com:9115
-        - source_labels: [__param_target]
-          target_label: instance
+          target_label: __address__
         - action: labelmap
           regex: __meta_kubernetes_service_label_(.+)
         - source_labels: [__meta_kubernetes_namespace]
