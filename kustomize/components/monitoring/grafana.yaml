@@ -23,7 +23,10 @@ kind: Service
 metadata:
   name: grafana
 spec:
+  type: NodePort
   selector:
     app: grafana
   ports:
   - port: 3000
+    targetPort: 3000
+    nodePort: 31300  # 30000-32767 범위 내에서 선택
