@@ -18,7 +18,8 @@ kind: Kustomization
 resources:
 - base
 patches:
-- path: componets/monitoring/monitoring-patch.yaml
+- path: monitoring-patch.yaml
+
   tagert:
     kide: Deployment
 components:
