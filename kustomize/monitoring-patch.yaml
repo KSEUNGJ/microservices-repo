@@ -129,3 +129,15 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "50051"
         prometheus.io/path: "/metrics"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgenerator
+spec:
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8089"  # 기본 포트, 실제 포트와 다를 수 있음
+        prometheus.io/path: "/metrics"
