@@ -80,7 +80,7 @@ data:
           action: replace
           target_label: kubernetes_pod_name
       - job_name: 'kubernetes-nodes'
-        scheme: https
+        scheme: http
         tls_config:
           ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
