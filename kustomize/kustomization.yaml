@@ -19,8 +19,6 @@ resources:
 - base
 patches:
 - path: monitoring-patch.yaml
-  target:
-    kind: Deployment
 components:
 - components/monitoring
 # - components/cymbal-branding
