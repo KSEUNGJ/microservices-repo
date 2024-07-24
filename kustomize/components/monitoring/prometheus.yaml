@@ -150,3 +150,24 @@ data:
         - source_labels: [__meta_kubernetes_service_name]
           action: replace
           target_label: kubernetes_name
+      # adservice와 cartservice를 위한 새로운 job 추가
+      - job_name: 'microservices'
+        kubernetes_sd_configs:
+        - role: service
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_service_name]
+          action: keep
+          regex: (adservice|cartservice)
+        - source_labels: [__address__]
+          action: replace
+          target_label: __address__
+          regex: (.+)
+          replacement: $1:9090  # 메트릭 포트로 변경 필요
+        - action: labelmap
+          regex: __meta_kubernetes_service_label_(.+)
+        - source_labels: [__meta_kubernetes_namespace]
+          action: replace
+          target_label: kubernetes_namespace
+        - source_labels: [__meta_kubernetes_service_name]
+          action: replace
+          target_label: kubernetes_name
