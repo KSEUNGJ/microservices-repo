@@ -19,8 +19,7 @@ resources:
 - base
 patches:
 - path: monitoring-patch.yaml
-
-  tagert:
+  target:
     kide: Deployment
 components:
 - components/monitoring
