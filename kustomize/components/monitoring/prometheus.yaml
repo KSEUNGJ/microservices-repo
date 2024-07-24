@@ -20,18 +20,25 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /etc/prometheus/
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
       volumes:
       - name: config-volume
         configMap:
           name: prometheus-config
-       serviceAccountName: prometheus
+      serviceAccountName: prometheus
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: prometheus
 spec:
-  type: NodePort
+  type: NodePort # NodePort를 유지
   selector:
     app: prometheus
   ports:
