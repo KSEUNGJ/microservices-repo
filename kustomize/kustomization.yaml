@@ -20,7 +20,7 @@ resources:
 patches:
 - path: monitoring-patch.yaml
   target:
-    kide: Deployment
+    kind: Deployment
 components:
 - components/monitoring
 # - components/cymbal-branding
