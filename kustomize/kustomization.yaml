@@ -17,8 +17,8 @@ kind: Kustomization
   
 resources:
 - base
-patches:
-- path: monitoring-patch.yaml
+patchesStrategicMerge:
+- monitoring-patch.yaml
 components:
 - components/monitoring
 # - components/cymbal-branding
