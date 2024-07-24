@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: all  # 이 패치는 모든 Deployment에 적용됩니다
+spec:
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"  # 대부분의 서비스에 대한 기본 메트릭 포트
+        prometheus.io/path: "/metrics"
+---
+# Redis의 경우 다른 포트를 사용하므로 별도의 패치가 필요합니다
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cart
+spec:
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "6379"  # Redis의 기본 포트
+        prometheus.io/path: "/metrics"

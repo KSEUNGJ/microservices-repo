@@ -17,6 +17,13 @@ spec:
         image: prom/prometheus:v2.30.3
         ports:
         - containerPort: 9090
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/prometheus/
+      volumes:
+      - name: config-volume
+        configMap:
+          name: prometheus-config
 ---
 apiVersion: v1
 kind: Service
@@ -29,8 +36,7 @@ spec:
   ports:
   - port: 9090
     targetPort: 9090
-    nodePort: 31090  # 30000-32767 범위 내에서 선택
-
+    nodePort: 31090
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -41,12 +47,76 @@ data:
     global:
       scrape_interval: 15s
     scrape_configs:
+      - job_name: 'kubernetes-pods'
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+          action: keep
+          regex: true
+        - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+          action: replace
+          target_label: __metrics_path__
+          regex: (.+)
+        - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+          action: replace
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $1:$2
+          target_label: __address__
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+        - source_labels: [__meta_kubernetes_namespace]
+          action: replace
+          target_label: kubernetes_namespace
+        - source_labels: [__meta_kubernetes_pod_name]
+          action: replace
+          target_label: kubernetes_pod_name
       - job_name: 'kubernetes-nodes'
         kubernetes_sd_configs:
         - role: node
         relabel_configs:
+        - action: labelmap
+          regex: __meta_kubernetes_node_label_(.+)
+        - target_label: __address__
+          replacement: kubernetes.default.svc:443
+        - source_labels: [__meta_kubernetes_node_name]
+          regex: (.+)
+          target_label: __metrics_path__
+          replacement: /api/v1/nodes/${1}/proxy/metrics
+      - job_name: 'kubernetes-services'
+        kubernetes_sd_configs:
+        - role: service
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_probe]
+          action: keep
+          regex: true
         - source_labels: [__address__]
-          regex: '(.*):10250'
-          replacement: '${1}:9100'
-          target_label: __address__
+          target_label: __param_target
+        - target_label: __address__
+          replacement: blackbox-exporter.example.com:9115
+        - source_labels: [__param_target]
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_service_label_(.+)
+        - source_labels: [__meta_kubernetes_namespace]
+          target_label: kubernetes_namespace
+        - source_labels: [__meta_kubernetes_service_name]
+          target_label: kubernetes_name
+      - job_name: 'kube-system-components'
+        kubernetes_sd_configs:
+        - role: pod
+          namespaces:
+            names:
+            - kube-system
+        relabel_configs:
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+        - source_labels: [__meta_kubernetes_namespace]
           action: replace
+          target_label: kubernetes_namespace
+        - source_labels: [__meta_kubernetes_pod_name]
+          action: replace
+          target_label: kubernetes_pod_name
