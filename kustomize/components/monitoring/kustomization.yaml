@@ -4,3 +4,15 @@ resources:
 - prometheus.yaml
 - grafana.yaml
 - node-exporter.yaml
+- prometheus-rbac.yaml
+
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: prometheus
+  spec:
+    template:
+      spec:
+        serviceAccountName: prometheus
