@@ -1,0 +1,43 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: prometheus-operator-group
+spec:
+  targetNamespaces:
+  - monitoring
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: prometheus-operator-subscription
+spec:
+  channel: beta
+  name: prometheus
+  source: operatorhubio-catalog
+  sourceNamespace: olm
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector:
+    matchLabels:
+      team: frontend
+  ruleSelector:
+    matchLabels:
+      team: frontend
+  resources:
+    requests:
+      memory: 400Mi
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Grafana
+metadata:
+  name: grafana
+spec:
+  ingress:
+    enabled: false
+  service:
+    type: ClusterIP
