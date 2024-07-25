@@ -44,7 +44,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: colestar2/lastproject:latest
+          image: gcr.io/google-samples/microservices-demo/frontend:v0.10.1 
           imagepullplocy: Always
           ports:
           - containerPort: 8080
