@@ -6,7 +6,6 @@ resources:
 - base
 
 components:
-- namespace.yaml
 - components/prometheus
 - components/grafana
 - components/node-exporter  
