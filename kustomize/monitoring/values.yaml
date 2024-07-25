@@ -1,0 +1,11 @@
+# values.yaml
+installCRDs: true
+
+grafana:
+  enabled: true
+  adminPassword: "admin"
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+

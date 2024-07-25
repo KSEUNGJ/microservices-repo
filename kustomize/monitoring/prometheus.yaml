@@ -10,12 +10,8 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: 45.7.1
     helm:
-      values: |
-        grafana:
-          enabled: true
-        prometheus:
-          prometheusSpec:
-            serviceMonitorSelectorNilUsesHelmValues: false
+      valueFiles:
+        - values.yaml # Git 리포지토리 내의 파일 경로
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
