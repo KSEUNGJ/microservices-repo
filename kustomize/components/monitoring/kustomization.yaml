@@ -10,4 +10,6 @@ resources:
 - crds/monitoring.coreos.com_prometheusrules.yaml
 - crds/monitoring.coreos.com_thanosrulers.yaml
 - crds/monitoring.coreos.com_probes.yaml
-- crds/grafana.integreatly.org_grafanas_crd.yaml
+- crds/grafana.integreatly.org_grafanas.yaml
+- crds/grafana.integreatly.org_grafanadatasources.yaml
+- crds/grafana.integreatly.org_grafanadashboards.yaml
