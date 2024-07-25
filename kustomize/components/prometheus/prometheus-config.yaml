@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-config
-  namespace: monitoring  # ConfigMap이 위치할 네임스페이스
+  namespace: monitoring
 data:
   prometheus.yml: |
     global:
@@ -18,9 +18,142 @@ data:
           - role: pod
             namespaces:
               names:
-                - monitoring  # 'node-exporter'가 있는 네임스페이스
+                - monitoring
         relabel_configs:
           - source_labels: [__meta_kubernetes_pod_label_app]
             action: keep
             regex: node-exporter
+
+      # Services in the 'app' namespace
+      - job_name: 'adservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: adservice
+
+      - job_name: 'cartservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: cartservice
+
+      - job_name: 'checkoutservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: checkoutservice
+
+      - job_name: 'currencyservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: currencyservice
+
+      - job_name: 'emailservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: emailservice
+
+      - job_name: 'frontend'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: frontend
+
+      - job_name: 'loadgenerator'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: loadgenerator
+
+      - job_name: 'paymentservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: paymentservice
+
+      - job_name: 'productcatalogservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: productcatalogservice
+
+      - job_name: 'recommendationservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: recommendationservice
+
+      - job_name: 'redis-cart'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: redis-cart
+
+      - job_name: 'shippingservice'
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - app
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name]
+            action: keep
+            regex: shippingservice
 
