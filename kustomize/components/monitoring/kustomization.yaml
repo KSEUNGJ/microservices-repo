@@ -4,7 +4,7 @@ kind: Component
 resources:
 - github.com/prometheus-operator/kube-prometheus?ref=v0.12.0
 - service-monitors.yaml
-
+- remove-duplicates.yaml
 patches:
 - path: prometheus-patch.yaml
   target:
@@ -12,3 +12,14 @@ patches:
     name: k8s
 
 namespace: monitoring
+
+# 중복 리소스 제거
+patchesJson6902:
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: RoleBinding
+    name: prometheus-k8s
+  patch: |
+    - op: remove
+      path: /metadata/annotations
