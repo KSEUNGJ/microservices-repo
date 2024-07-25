@@ -10,16 +10,3 @@ patches:
   target:
     kind: Prometheus
     name: k8s
-
-namespace: monitoring
-
-# 중복 리소스 제거
-patchesJson6902:
-- target:
-    group: rbac.authorization.k8s.io
-    version: v1
-    kind: RoleBinding
-    name: prometheus-k8s
-  patch: |
-    - op: remove
-      path: /metadata/annotations
