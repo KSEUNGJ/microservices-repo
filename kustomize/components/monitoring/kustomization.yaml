@@ -1,11 +1,14 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-namespace: monitoring
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
 
 resources:
 - github.com/prometheus-operator/kube-prometheus?ref=v0.12.0
 - service-monitors.yaml
 
-patchesStrategicMerge:
-- prometheus-patch.yaml
+patches:
+- path: prometheus-patch.yaml
+  target:
+    kind: Prometheus
+    name: k8s
+
+namespace: monitoring
