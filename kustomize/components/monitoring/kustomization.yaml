@@ -3,3 +3,11 @@ kind: Component
 
 resources:
 - prometheus-operator.yaml
+- crds/monitoring.coreos.com_prometheuses.yaml
+- crds/monitoring.coreos.com_alertmanagers.yaml
+- crds/monitoring.coreos.com_servicemonitors.yaml
+- crds/monitoring.coreos.com_podmonitors.yaml
+- crds/monitoring.coreos.com_prometheusrules.yaml
+- crds/monitoring.coreos.com_thanosrulers.yaml
+- crds/monitoring.coreos.com_probes.yaml
+- crds/grafana.integreatly.org_grafanas_crd.yaml
