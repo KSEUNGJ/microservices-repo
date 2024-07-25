@@ -1,0 +1,17 @@
+helm:
+      values: |
+        grafana:
+          enabled: true
+          ingress:
+            enabled: true
+            hosts:
+              - grafana.yourdomain.com
+        prometheus:
+          enabled: true
+          prometheusSpec:
+            retention: 30d
+        alertmanager:
+          enabled: true
+          config:
+            global:
+              resolve_timeout: 5m
