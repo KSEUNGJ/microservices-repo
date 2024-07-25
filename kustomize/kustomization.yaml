@@ -8,4 +8,5 @@ resources:
 components:
 - components/prometheus
 - components/grafana
+- components/node-exporter  
 
