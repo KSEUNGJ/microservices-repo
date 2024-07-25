@@ -45,6 +45,7 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
           image: colestar2/lastproject:latest
+          imagepullplocy: Always
           ports:
           - containerPort: 8080
           readinessProbe:
