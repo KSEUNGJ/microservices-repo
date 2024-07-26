@@ -43,7 +43,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: colestar2/productcatalogservice:latestst
+        image: colestar2/productcatalogservice:latest
         ports:
         - containerPort: 3550
         env:
