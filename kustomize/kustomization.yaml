@@ -14,6 +14,12 @@ patches:
   target:
     kind: Deployment
     namespace: app
+- path: add-nfs-volume-patch.yaml
+  target:
+    kind: Deployment
+- path: add-nfs-volume-patch.yaml
+  target:
+    kind: StatefulSet
 components:
 - components/cadvisor
 - components/rbac
@@ -21,3 +27,4 @@ components:
 - components/grafana
 - components/node-exporter
 - components/alertmanager
+- components/nfs-provisioner
