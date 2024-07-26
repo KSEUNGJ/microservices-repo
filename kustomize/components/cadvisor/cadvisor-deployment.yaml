@@ -19,10 +19,10 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-        - name: cadvisor-mount
+        - name: cadvisor-mount-rootfs
           mountPath: /container
           mountPropagation: Bidirectional
-        - name: cadvisor-mount
+        - name: cadvisor-mount-cgroup
           mountPath: /sys/fs/cgroup
         resources:
           requests:
@@ -32,10 +32,10 @@ spec:
             memory: "200Mi"
             cpu: "500m"
       volumes:
-      - name: cadvisor-mount
+      - name: cadvisor-mount-rootfs
         hostPath:
           path: /rootfs
-      - name: cadvisor-mount
+      - name: cadvisor-mount-cgroup
         hostPath:
           path: /sys/fs/cgroup
 ---
@@ -51,4 +51,3 @@ spec:
     protocol: TCP
   selector:
     app: cadvisor
-
