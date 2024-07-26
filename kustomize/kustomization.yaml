@@ -3,7 +3,16 @@ kind: Kustomization
 resources:
 - base
 patches:
-- path: add-labels-patch.yaml
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: null
+    spec:
+      template:
+        metadata:
+          labels:
+            app: microservice
   target:
     kind: Deployment
     namespace: app
