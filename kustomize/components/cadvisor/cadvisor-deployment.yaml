@@ -1,8 +1,11 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cadvisor
   namespace: monitoring
+  labels:
+    app: cadvisor
 spec:
   replicas: 1
   selector:
@@ -15,40 +18,60 @@ spec:
     spec:
       containers:
       - name: cadvisor
-        image: google/cadvisor:latest
+        image: gcr.io/cadvisor/cadvisor:v0.47.0
+        securityContext:
+          privileged: true
         ports:
-        - containerPort: 9090  # 변경된 포트
+        - name: http
+          containerPort: 8080
         volumeMounts:
-        - name: cadvisor-mount-rootfs
-          mountPath: /container
-          mountPropagation: Bidirectional
-        - name: cadvisor-mount-cgroup
-          mountPath: /sys/fs/cgroup
+        - name: rootfs
+          mountPath: /rootfs
+          readOnly: true
+        - name: var-run
+          mountPath: /var/run
+          readOnly: false
+        - name: sys
+          mountPath: /sys
+          readOnly: true
+        - name: docker
+          mountPath: /var/lib/docker
+          readOnly: true
         resources:
           requests:
-            memory: "100Mi"
-            cpu: "100m"
+            memory: 200Mi
+            cpu: 150m
           limits:
-            memory: "200Mi"
-            cpu: "500m"
+            memory: 2000Mi
+            cpu: 300m
+      terminationGracePeriodSeconds: 30
       volumes:
-      - name: cadvisor-mount-rootfs
+      - name: rootfs
         hostPath:
-          path: /rootfs
-      - name: cadvisor-mount-cgroup
+          path: /
+      - name: var-run
         hostPath:
-          path: /sys/fs/cgroup
+          path: /var/run
+      - name: sys
+        hostPath:
+          path: /sys
+      - name: docker
+        hostPath:
+          path: /var/lib/docker
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: cadvisor
   namespace: monitoring
+  labels:
+    app: cadvisor
 spec:
-  ports:
-  - port: 9090  # 변경된 포트
-    targetPort: 9090  # 변경된 포트
-    protocol: TCP
   selector:
     app: cadvisor
-
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http
