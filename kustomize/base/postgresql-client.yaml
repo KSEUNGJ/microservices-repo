@@ -1,0 +1,12 @@
+# base/postgresql-client.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgresql-client
+spec:
+  containers:
+  - name: postgresql-client
+    image: bitnami/postgresql:latest
+    command:
+      - sleep
+      - "3600"
