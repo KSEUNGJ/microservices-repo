@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cadvisor
-  namespace: monitoring  # 필요에 따라 네임스페이스 수정
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cadvisor
-        image: google/cadvisor:v0.39.0  # 최신 버전으로 업데이트할 수 있음
+        image: google/cadvisor:v0.39.0
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cadvisor
-  namespace: monitoring  # 필요에 따라 네임스페이스 수정
+  namespace: monitoring
 spec:
   ports:
   - port: 8080
@@ -51,3 +51,4 @@ spec:
     protocol: TCP
   selector:
     app: cadvisor
+
