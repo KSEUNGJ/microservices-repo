@@ -7,6 +7,15 @@ data:
   prometheus.yml: |
     global:
       scrape_interval: 15s
+    
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets:
+          - alertmanager.monitoring.svc.cluster.local:9093
+
+    rule_files:
+    - /etc/prometheus/alert-rules.yaml
 
     scrape_configs:
       - job_name: 'kubernetes-apiservers'
@@ -23,6 +32,7 @@ data:
           - source_labels: [__meta_kubernetes_pod_label_app]
             action: keep
             regex: node-exporter
+
       - job_name: 'cadvisor'
         kubernetes_sd_configs:
           - role: node
@@ -39,13 +49,3 @@ data:
             regex: (.+)
             target_label: __metrics_path__
             replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
-          - source_labels: [id]
-            action: replace
-            regex: '^/machine\.slice/machine-rkt\\x2d([^\\]+)\\.+/([^/]+)$'
-            target_label: rkt_container_name
-            replacement: '${2}-${1}'
-          - source_labels: [id]
-            action: replace
-            regex: '^/system\.slice/(.+)\.service$'
-            target_label: systemd_service_name
-            replacement: '${1}'

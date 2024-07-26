@@ -7,4 +7,4 @@ resources:
 - prometheus-config.yaml
 - prometheus-deployment.yaml
 - prometheus-service.yaml
-
+- alert-rules.yaml
