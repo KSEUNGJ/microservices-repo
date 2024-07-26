@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cadvisor
+  namespace: monitoring  # 필요에 따라 네임스페이스 수정
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cadvisor
+  template:
+    metadata:
+      labels:
+        app: cadvisor
+    spec:
+      containers:
+      - name: cadvisor
+        image: google/cadvisor:v0.39.0  # 최신 버전으로 업데이트할 수 있음
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: cadvisor-mount
+          mountPath: /container
+          mountPropagation: Bidirectional
+        - name: cadvisor-mount
+          mountPath: /sys/fs/cgroup
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "500m"
+      volumes:
+      - name: cadvisor-mount
+        hostPath:
+          path: /rootfs
+      - name: cadvisor-mount
+        hostPath:
+          path: /sys/fs/cgroup
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cadvisor
+  namespace: monitoring  # 필요에 따라 네임스페이스 수정
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: cadvisor
+

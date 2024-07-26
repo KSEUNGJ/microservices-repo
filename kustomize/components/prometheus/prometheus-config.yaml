@@ -157,3 +157,7 @@ data:
             action: keep
             regex: shippingservice
 
+      - job_name: 'cadvisor'
+        static_configs:
+          - targets: ['cadvisor.monitoring.svc.cluster.local:8080']  # cAdvisor 서비스의 클러스터 내 주소
+
