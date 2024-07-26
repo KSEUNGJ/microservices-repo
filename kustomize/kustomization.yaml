@@ -6,7 +6,7 @@ resources:
 - base
 
 components:
-- compononts/cadvisor
+- components/cadvisor
 - components/rbac
 - components/prometheus
 - components/grafana
