@@ -4,15 +4,13 @@ resources:
 - base
 patches:
 - patch: |-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: null
-    spec:
-      template:
-        metadata:
-          labels:
-            app: microservice
+    [
+      {
+        "op": "add",
+        "path": "/spec/template/metadata/labels/app",
+        "value": "microservice"
+      }
+    ]
   target:
     kind: Deployment
     namespace: app
