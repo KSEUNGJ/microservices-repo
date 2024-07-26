@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: not-important
+spec:
+  template:
+    spec:
+      volumes:
+      - name: nfs-volume
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      containers:
+      - name: not-important
+        volumeMounts:
+        - name: nfs-volume
+          mountPath: /mnt/nfs
+
