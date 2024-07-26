@@ -52,8 +52,7 @@ spec:
         - name: prometheus-storage-volume
           mountPath: /prometheus/
         - name: prometheus-rules-volume
-          mountPath: /etc/prometheus/alert-rules.yaml
-          subPath: alert-rules.yaml
+          mountPath: /etc/prometheus/rules/
       volumes:
       - name: prometheus-config-volume
         configMap:
@@ -62,5 +61,6 @@ spec:
       - name: prometheus-rules-volume
         configMap:
           name: prometheus-alert-rules
+          defaultMode: 0644
       - name: prometheus-storage-volume
         emptyDir: {}
