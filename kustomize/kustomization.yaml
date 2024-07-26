@@ -17,9 +17,11 @@ patches:
 - path: add-nfs-volume-patch.yaml
   target:
     kind: Deployment
+    name: not-important
 - path: add-nfs-volume-patch.yaml
   target:
     kind: StatefulSet
+    name: not-important      
 components:
 - components/cadvisor
 - components/rbac
