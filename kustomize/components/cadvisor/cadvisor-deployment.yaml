@@ -17,7 +17,7 @@ spec:
       - name: cadvisor
         image: google/cadvisor:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 9090  # 변경된 포트
         volumeMounts:
         - name: cadvisor-mount-rootfs
           mountPath: /container
@@ -46,8 +46,8 @@ metadata:
   namespace: monitoring
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 9090  # 변경된 포트
+    targetPort: 9090  # 변경된 포트
     protocol: TCP
   selector:
     app: cadvisor
