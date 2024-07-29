@@ -20,3 +20,11 @@ spec:
             name: webcloud-service
             port:
               number: 80
+      paths:
+      - path: /shoppingmall
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
