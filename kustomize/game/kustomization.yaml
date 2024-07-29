@@ -17,4 +17,5 @@ kind: Kustomization
 resources:
 - 2048-tile.yaml 
 - minecraft.yaml
+- supermario.yaml
 namespace: game 
