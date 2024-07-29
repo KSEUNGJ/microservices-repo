@@ -17,18 +17,7 @@ patches:
   target:
     kind: Deployment
     namespace: app
-- patch: |-
-    - op: add
-      path: /spec/template/spec/volumes/-
-      value:
-        name: nfs-volume
-        persistentVolumeClaim:
-          claimName: nfs-pvc
-    - op: add
-      path: /spec/template/spec/containers/0/volumeMounts/-
-      value:
-        name: nfs-volume
-        mountPath: /shared-data
+- path: patches/nfs/nfs-patch.yaml
   target:
     kind: Deployment
 components:
