@@ -18,8 +18,7 @@ spec:
           image: k8s.gcr.io/ingress-nginx/controller:v1.1.1
           args:
             - /nginx-ingress-controller
-            # ConfigMap 설정 제거
-            #- --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
+            - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
             - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
             - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
           ports:
