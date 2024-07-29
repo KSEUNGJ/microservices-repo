@@ -10,7 +10,6 @@ spec:
         persistentVolumeClaim:
           claimName: nfs-pvc
       containers:
-      - name: ${"{ .spec.template.spec.containers[0].name }"}
-        volumeMounts:
+      - volumeMounts:
         - name: nfs-volume
           mountPath: /shared-data
