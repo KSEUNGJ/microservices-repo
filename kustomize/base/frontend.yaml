@@ -44,11 +44,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-<<<<<<< HEAD
-          image: colestar2/frontend:latest 
-=======
           image: colestar2/frontend:latest
->>>>>>> origin/mooon
           ports:
           - containerPort: 8080
           readinessProbe:
