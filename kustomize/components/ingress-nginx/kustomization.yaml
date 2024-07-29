@@ -3,6 +3,3 @@ kind: Component
 resources:
   - deployment.yaml
   - service.yaml
-
-namespace: ingress-nginx
-
