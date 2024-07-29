@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: not-important
+  name: "*"
 spec:
   template:
     spec:
@@ -10,7 +10,7 @@ spec:
         persistentVolumeClaim:
           claimName: nfs-pvc
       containers:
-      - name: not-important
+      - name: "*"
         volumeMounts:
         - name: nfs-volume
           mountPath: /shared-data

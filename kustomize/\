@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- base
+- game
+- patches/nfs/nfs-pv.yaml
+- patches/nfs/nfs-pvc.yaml
+patches:
+- patch: |-
+    [
+      {
+        "op": "add",
+        "path": "/spec/template/metadata/labels/app",
+        "value": "microservice"
+      }
+    ]
+  target:
+    kind: Deployment
+    namespace: app
+- path: patches/nfs/nfs-patch.yaml
+  target:
+    kind: Deployment
+components:
+- components/cadvisor
+- components/rbac
+- components/prometheus
+- components/grafana
+- components/node-exporter
+- components/alertmanager
