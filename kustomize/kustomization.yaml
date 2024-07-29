@@ -3,9 +3,7 @@ kind: Kustomization
 resources:
 - base
 - game
-- patches/nfs/nfs-pv.yaml
-- patches/nfs/nfs-pvc.yaml
-- patches/network-policies/allow-nfs-network-policy.yaml  # 이 줄을 추가
+- patches/nfs/nfs-resources.yaml
 patches:
 - patch: |-
     [

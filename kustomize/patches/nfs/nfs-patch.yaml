@@ -5,13 +5,12 @@ metadata:
 spec:
   template:
     spec:
-      $patch: merge
       volumes:
       - name: nfs-volume
         persistentVolumeClaim:
           claimName: nfs-pvc
       containers:
-      - $patch: merge
+      - name: "*"
         volumeMounts:
         - name: nfs-volume
           mountPath: /shared-data
