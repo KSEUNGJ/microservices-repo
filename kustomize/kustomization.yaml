@@ -16,9 +16,8 @@ patches:
   target:
     kind: Deployment
     namespace: app
-- path: patches/nfs/nfs-patch.yaml
-  target:
-    kind: Deployment
+transformers:
+- transformers/add-nfs-volume.yaml
 components:
 - components/cadvisor
 - components/rbac
