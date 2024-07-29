@@ -10,7 +10,7 @@ spec:
         persistentVolumeClaim:
           claimName: nfs-pvc
       containers:
-      - name: "*"
+      - $patch: merge
         volumeMounts:
         - name: nfs-volume
           mountPath: /shared-data
