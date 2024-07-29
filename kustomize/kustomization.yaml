@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
 - base
 - game
+- patches/nfs/nfs-pv.yaml
+- patches/nfs/nfs-pvc.yaml
 patches:
 - patch: |-
     [
@@ -15,8 +17,20 @@ patches:
   target:
     kind: Deployment
     namespace: app
-patchesStrategicMerge:
-- patches/nfs/nfs-patch.yaml      
+- patch: |-
+    - op: add
+      path: /spec/template/spec/volumes/-
+      value:
+        name: nfs-volume
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts/-
+      value:
+        name: nfs-volume
+        mountPath: /shared-data
+  target:
+    kind: Deployment
 components:
 - components/cadvisor
 - components/rbac
