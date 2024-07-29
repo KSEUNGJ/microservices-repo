@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-nfs
+spec:
+  podSelector: {}
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 129.154.59.39/32
+    ports:
+    - protocol: TCP
+      port: 2049
+    - protocol: TCP
+      port: 111
+    - protocol: TCP
+      port: 892
+    - protocol: TCP
+      port: 4045
+    - protocol: UDP
+      port: 2049
+    - protocol: UDP
+      port: 111
+    - protocol: UDP
+      port: 892
+    - protocol: UDP
+      port: 4045
