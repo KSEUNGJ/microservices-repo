@@ -3,12 +3,24 @@ kind: PatchTransformer
 metadata:
   name: add-nfs-volume
 patch: |-
+  - op: test
+    path: /spec/template/spec/volumes
+    value: null
+  - op: add
+    path: /spec/template/spec/volumes
+    value: []
   - op: add
     path: /spec/template/spec/volumes/-
     value:
       name: nfs-volume
       persistentVolumeClaim:
         claimName: nfs-pvc
+  - op: test
+    path: /spec/template/spec/containers/0/volumeMounts
+    value: null
+  - op: add
+    path: /spec/template/spec/containers/0/volumeMounts
+    value: []
   - op: add
     path: /spec/template/spec/containers/0/volumeMounts/-
     value:
