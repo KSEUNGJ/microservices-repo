@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webcloud
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webcloud-deployment
+  namespace: webcloud
+  labels:
+    app: webcloud
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webcloud
+  template:
+    metadata:
+      labels:
+        app: webcloud
+    spec:
+      containers:
+      - name: webcloud-container
+        image: colestar2/webcloud:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webcloud-service
+  namespace: webcloud
+  labels:
+    app: webcloud
+spec:
+  selector:
+    app: webcloud
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer

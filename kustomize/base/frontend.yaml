@@ -44,7 +44,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: colestar2/project:latest 
+          image: colestar2/frontend:latest 
           ports:
           - containerPort: 8080
           readinessProbe:

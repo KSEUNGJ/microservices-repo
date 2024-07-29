@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webcloud-ingress
+  namespace: webcloud
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - cloud.providehighvalue.com
+    secretName: providehighvalue-tls
+  rules:
+  - host: cloud.providehighvalue.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: webcloud-service
+            port:
+              number: 80

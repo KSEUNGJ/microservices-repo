@@ -26,3 +26,5 @@ resources:
 - productcatalogservice.yaml
 - recommendationservice.yaml
 - shippingservice.yaml
+- webcloud_demo.yaml
+- webcloud-ingress.yaml
