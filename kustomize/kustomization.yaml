@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - shop
 - game
+- main  
 patches:
 - patch: |-
     [
