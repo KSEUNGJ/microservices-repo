@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
 - base
 - game
-  #- patches/nfs/nfs-resources.yaml
 patches:
 - patch: |-
     [
@@ -16,8 +15,6 @@ patches:
   target:
     kind: Deployment
     namespace: app
-      #transformers:
-      #- transformers/add-nfs-volume.yaml
 components:
 - components/cadvisor
 - components/rbac
