@@ -9,8 +9,8 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: 129.154.59.39
-    path: "/shared"
+    server: 144.24.84.216
+    path: "/mnt/nfs_share"      
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
