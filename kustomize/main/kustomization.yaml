@@ -6,5 +6,6 @@ resources:
   - traefik-service.yaml
   - rbac.yaml
     #- traefik-namespace-ingress.yaml
-  - app-namespace-ingress.yaml
-  - game-namespace-ingress.yaml
+    # - app-namespace-ingress.yaml
+    # - game-namespace-ingress.yaml
+  - ingress-Route.yaml
