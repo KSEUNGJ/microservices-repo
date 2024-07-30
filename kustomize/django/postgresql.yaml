@@ -10,7 +10,7 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 5Gi  # 기존 PV 용량과 일치해야 함
+      storage: 10Gi  # 기존 PV 용량과 일치해야 함
   storageClassName: nfs
 ---
 # Service
