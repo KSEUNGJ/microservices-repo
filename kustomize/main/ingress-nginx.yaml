@@ -536,7 +536,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: k8s.gcr.io/ingress-nginx/controller:v1.1.1
+          image: k8s.gcr.io/ingress-nginx/controller:v1.7.0
           imagePullPolicy: IfNotPresent
           name: controller
           ports:
