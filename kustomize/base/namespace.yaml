@@ -13,7 +13,3 @@ kind: Namespace
 metadata:
   name: game
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ingress-nginx
