@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  volumeName: django-nfs-pv  # 위에서 정의한 PV 이름을 명시적으로 지정
+  volumeName: django-nfs-pv
