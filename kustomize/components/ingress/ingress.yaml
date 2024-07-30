@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: cloud.providehighvalue.com
+  - host: cloud.fsst.me
     http:
       paths:
       - path: /
@@ -50,7 +50,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: cloud.providehighvalue.com
+  - host: cloud.fsst.me
     http:
       paths:
       - path: /
@@ -78,7 +78,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: cloud.providehighvalue.com
+  - host: cloud.fsst.me
     http:
       paths:
       - path: /2048
