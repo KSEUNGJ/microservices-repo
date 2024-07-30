@@ -31,5 +31,5 @@ spec:
   - port: 77
     protocol: TCP
     targetPort: 7897
-  type: NodePort
+  type: ClusterIP
   externalTrafficPolicy: Local
