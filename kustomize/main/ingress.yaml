@@ -18,6 +18,7 @@ spec:
             name: frontend
             port:
               number: 80
+            namespace: app
       - path: /game1
         pathType: Prefix
         backend:
@@ -25,6 +26,7 @@ spec:
             name: deployment-2048
             port:
               number: 80
+            namespace: game
       - path: /game2
         pathType: Prefix
         backend:
@@ -32,3 +34,4 @@ spec:
             name: mario
             port:
               number: 77
+            namespace: game
