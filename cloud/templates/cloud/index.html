@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>근두운 서비스</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Gaegu:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4285F4;
+            --secondary-color: #0F9D58;
+            --tertiary-color: #F4B400;
+            --quaternary-color: #DB4437;
+            --background-color: #ffffff;
+            --text-color: #333333;
+            --header-height: 80px;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .auth-buttons a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .auth-buttons a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .logo-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+        
+        .logo-image {
+            width: 300px;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        .logo {
+            font-family: 'Gaegu', cursive;
+            font-size: 2.5em;
+            font-weight: 700;
+            position: absolute;
+            top: -40px; /* Positioning the text above the image */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+        
+        .logo span {
+            color: white;
+            text-stroke: 1px #333;
+            -webkit-text-stroke: 1px #333;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px 5%;
+            background-color: #f8f8f8;
+        }
+        
+        .service-item {
+            background-color: var(--background-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .service-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .service-description {
+            font-size: 1em;
+            color: var(--text-color);
+        }
+        
+        .footer {
+            background-color: #f0f0f0;
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-links">
+            <a href="#home">홈</a>
+            <a href="#services">서비스</a>
+            <a href="#about">소개</a>
+            <a href="#contact">문의</a>
+        </nav>
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <a href="{% url 'index' %}"><i class="fas fa-user"></i> 메인</a>
+                <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            {% else %}
+                <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> 로그인</a>
+                <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> 회원가입</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="logo-container">
+                <div class="logo">
+                    <span>근두운</span>
+                </div>
+                <img src="{% static 'cloud.gif' %}" alt="근두운" class="logo-image">
+            </div>
+        </section>
+
+        <section id="services" class="service-grid">
+            <div class="service-item">
+                <img src="{% static 'gaming.jpg' %}" alt="게임">
+                <div class="service-content">
+                    <h3 class="service-title">게임</h3>
+                    <p class="service-description">최신 온라인 게임을 즐겨보세요.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <img src="{% static 'blog.jpg' %}" alt="블로그">
+                <div class="service-content">
+                    <h3 class="service-title">블로그</h3>
+                    <p class="service-description">자유롭게 글을 쓰고 공유하세요.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <img src="{% static 'shopping.jpg' %}" alt="쇼핑몰">
+                <div class="service-content">
+                    <h3 class="service-title">쇼핑몰</h3>
+                    <p class="service-description">다양한 상품을 편리하게 쇼핑하세요.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 근두운 서비스. All rights reserved.</p>
+    </footer>
+</body>
+</html>
