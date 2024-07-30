@@ -5,7 +5,7 @@ metadata:
   namespace: main
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 20Gi
