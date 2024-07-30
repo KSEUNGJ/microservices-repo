@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- django-deployment.yaml
+- django-service.yaml
+- db-secrets.yaml
+
+images:
+- name: yoyoyellow
+  newTag: latest  # 또는 사용하는 특정 태그
