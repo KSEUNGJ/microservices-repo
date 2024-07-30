@@ -1,25 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
-  namespace: traefik
+  name: ingress-game
+  namespace: game
 spec:
-  tls:
-  - hosts:
-    - cloud1.providehighvalue.com
-    secretName: providehighvalue-tls
   rules:
-  - host: cloud1.providehighvalue.com 
+  - host: cloud1.providehighvalue.com
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: frontend
-            port:
-              number: 80
-            namespace: app
       - path: /game1
         pathType: Prefix
         backend:
@@ -27,7 +15,6 @@ spec:
             name: deployment-2048
             port:
               number: 80
-            namespace: game
       - path: /game2
         pathType: Prefix
         backend:
@@ -35,4 +22,3 @@ spec:
             name: mario
             port:
               number: 77
-            namespace: game
