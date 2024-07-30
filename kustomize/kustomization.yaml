@@ -6,7 +6,6 @@ resources:
 - nfs
 - blog
 - ingress      
-- components/ingress-nginx
 
 patches:
 - patch: |-
@@ -46,4 +45,4 @@ components:
 - components/grafana
 - components/node-exporter
 - components/alertmanager
-  #- components/ingress-nginx
+- components/ingress-nginx
