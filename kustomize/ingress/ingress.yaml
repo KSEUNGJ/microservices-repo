@@ -4,10 +4,9 @@ metadata:
   name: microservices-ingress
   namespace: ingress-nginx
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: "gke-proj"  # GCP에서 생성한 글로벌 정적 IP 이름
-    networking.gke.io/managed-certificates: "managed-cert"  # 관리형 인증서 이름
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: "gke-proj"
+    networking.gke.io/managed-certificates: "managed-cert"
 spec:
   rules:
   - host: cloud.providehighvalue.com
@@ -17,31 +16,27 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-external
+            name: frontend-external.app.svc.cluster.local
             port:
               number: 80
-          namespace: app  # 여기에 올바른 네임스페이스 지정
       - path: /wordpress
         pathType: Prefix
         backend:
           service:
-            name: wordpress
+            name: wordpress.app.svc.cluster.local
             port:
               number: 80
-          namespace: app  # 여기에 올바른 네임스페이스 지정
       - path: /2048
         pathType: Prefix
         backend:
           service:
-            name: deployment-2048
+            name: deployment-2048.game.svc.cluster.local
             port:
               number: 10000
-          namespace: game  # 여기에 올바른 네임스페이스 지정
       - path: /mario
         pathType: Prefix
         backend:
           service:
-            name: mario
+            name: mario.game.svc.cluster.local
             port:
               number: 77
-          namespace: game  # 여기에 올바른 네임스페이스 지정
