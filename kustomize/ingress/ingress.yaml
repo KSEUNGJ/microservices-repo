@@ -18,21 +18,21 @@ spec:
             name: frontend-external
             port: 
               number: 80
-      - path: /wordpress/
+      - path: /wordpress
         pathType: Prefix
         backend:
           service:
             name: wordpress
             port: 
               number: 80
-      - path: /2048/
+      - path: /2048
         pathType: Prefix
         backend:
           service:
             name: deployment-2048
             port: 
               number: 10000
-      - path: /mario/
+      - path: /mario
         pathType: Prefix
         backend:
           service:
