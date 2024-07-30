@@ -2,6 +2,7 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: managed-cert
+  nmaespace: ingress-system
 spec:
   domains:
     - cloud.providehighvalue.com
