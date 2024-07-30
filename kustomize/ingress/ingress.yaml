@@ -16,31 +16,27 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-external
+            name: frontend-external-app
             port:
               number: 80
-          namespace: app
       - path: /wordpress
         pathType: Prefix
         backend:
           service:
-            name: wordpress
+            name: wordpress-app
             port:
               number: 80
-          namespace: app
       - path: /2048
         pathType: Prefix
         backend:
           service:
-            name: deployment-2048
+            name: deployment-2048-game
             port:
               number: 10000
-          namespace: game
       - path: /mario
         pathType: Prefix
         backend:
           service:
-            name: mario
+            name: mario-game
             port:
               number: 77
-          namespace: game
