@@ -21,6 +21,10 @@ rules:
       - get
       - list
       - watch
+      - create
+      - update
+      - patch
+      - delete
   - apiGroups:
       - extensions
       - networking.k8s.io
@@ -31,6 +35,10 @@ rules:
       - get
       - list
       - watch
+      - create
+      - update
+      - patch
+      - delete
   - apiGroups:
       - extensions
     resources:
@@ -63,6 +71,10 @@ rules:
       - get
       - list
       - watch
+      - create
+      - update
+      - patch
+      - delete
 
 ---
 kind: ClusterRoleBinding
