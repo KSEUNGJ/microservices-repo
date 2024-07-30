@@ -46,3 +46,4 @@ components:
 - components/grafana
 - components/node-exporter
 - components/alertmanager
+- components/backendconfig

@@ -16,27 +16,27 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend-external.app.svc.cluster.local
+            name: frontend-external
             port:
               number: 80
       - path: /wordpress
         pathType: Prefix
         backend:
           service:
-            name: wordpress.app.svc.cluster.local
+            name: wordpress
             port:
               number: 80
       - path: /2048
         pathType: Prefix
         backend:
           service:
-            name: deployment-2048.game.svc.cluster.local
+            name: deployment-2048
             port:
               number: 10000
       - path: /mario
         pathType: Prefix
         backend:
           service:
-            name: mario.game.svc.cluster.local
+            name: mario
             port:
               number: 77

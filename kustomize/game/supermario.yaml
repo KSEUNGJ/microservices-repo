@@ -24,12 +24,12 @@ kind: Service
 metadata:
    name: mario
    namespace: game
+   annotations:
+    cloud.google.com/backend-config: '{"default": "game-backendconfig"}'  
 spec:
   selector:
     app: mario
   ports:
   - port: 77
     protocol: TCP
-    targetPort: 7897
   type: ClusterIP
-  externalTrafficPolicy: Local

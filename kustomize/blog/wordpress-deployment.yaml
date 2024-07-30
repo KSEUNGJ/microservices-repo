@@ -4,6 +4,8 @@ metadata:
   name: wordpress
   labels:
     app: wordpress
+  annotations:
+    cloud.google.com/backend-config: '{"default": "app-backendconfig"}'
 spec:
   ports:
     - port: 80
