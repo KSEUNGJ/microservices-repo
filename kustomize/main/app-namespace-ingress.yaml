@@ -8,7 +8,7 @@ spec:
   - host: cloud1.providehighvalue.com
     http:
       paths:
-      - path: /shop
+      - path: /
         pathType: Prefix
         backend:
           service:
