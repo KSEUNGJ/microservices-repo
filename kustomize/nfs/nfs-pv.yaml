@@ -40,18 +40,3 @@ spec:
     server: 52.78.1.170 # NFS-Server 의 IP
     path: /nfs4-share2      # NFS 저장소
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nfs-pv
-spec:
-  capacity:
-    storage: 10Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs
-  nfs:
-    server: 52.78.1.170
-    path: /nfs4-share3
