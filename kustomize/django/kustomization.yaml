@@ -6,7 +6,6 @@ resources:
 - django-service.yaml
 - db-secrets.yaml
 - django-pvc.yaml  
-- gke-pvc-role-binding.yaml  
 images:
 - name: yoyoyellow/django
   newTag: latest
