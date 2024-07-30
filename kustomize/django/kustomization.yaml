@@ -5,7 +5,6 @@ resources:
 - django-deployment.yaml
 - django-service.yaml
 - db-secrets.yaml
-
 images:
-  - name: yoyoyellow/django:latest
-  newTag: latest  # 또는 사용하는 특정 태그
+- name: yoyoyellow/django
+  newTag: latest
