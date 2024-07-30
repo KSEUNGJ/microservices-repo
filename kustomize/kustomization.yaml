@@ -6,7 +6,7 @@ resources:
 - nfs
 - blog
 - ingress      
-
+- gke
 patches:
 - patch: |-
     apiVersion: apps/v1
