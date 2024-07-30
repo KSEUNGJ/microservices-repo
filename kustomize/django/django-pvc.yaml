@@ -5,8 +5,8 @@ metadata:
   namespace: main
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 20Gi
-  volumeName: django-nfs-pv
+  storageClassName: nfs

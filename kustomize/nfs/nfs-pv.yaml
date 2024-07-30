@@ -44,12 +44,13 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: django-nfs-pv
-  namespace: main
 spec:
   capacity:
-    storage: 20Gi  # 필요에 따라 조정 가능
+    storage: 20Gi
   accessModes:
-    - ReadWriteOnce # Django는 여러 Pod에서 접근할 수 있도록 ReadWriteMany 유지
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
   nfs:
-    server: 52.78.1.170  # NFS 서버의 IP
-    path: /nfs4-share3  # Django 애플리케이션을 위한 새로운 NFS 공유 경로
+    server: 52.78.1.170
+    path: "/nfs4-share3"
