@@ -38,4 +38,4 @@ spec:
       volumes:
       - name: django-data
         persistentVolumeClaim:
-          claimName: django-pvc  # 이 부분만 변경됨
+          claimName: django-nfs-pv  # 이 부분만 변경됨
