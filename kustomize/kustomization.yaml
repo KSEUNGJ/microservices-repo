@@ -39,10 +39,10 @@ secretGenerator:
   - password=$MysqlDbPW
 
 components:
+- components/ingress-nginx
 - components/cadvisor
 - components/rbac
 - components/prometheus
 - components/grafana
 - components/node-exporter
 - components/alertmanager
-- components/ingress-nginx
