@@ -8,5 +8,5 @@ resources:
     #- traefik-namespace-ingress.yaml
     # - app-namespace-ingress.yaml
     # - game-namespace-ingress.yaml
-    # - ingress-Route.yaml
-  - ingress.yaml
+  - ingress-Route.yaml
+    #- ingress.yaml

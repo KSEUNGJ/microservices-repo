@@ -7,8 +7,6 @@ spec:
   entryPoints:
     - web
     - websecure
-  tls:
-    secretName: providehighvalue-tls
   routes:
   - match: Host(`cloud1.providehighvalue.com`) && PathPrefix(`/`)
     kind: Rule
