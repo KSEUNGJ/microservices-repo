@@ -13,7 +13,7 @@ spec:
   - host: cloud.providehighvalue.com
     http:
       paths:
-      - path: /frontend(/|$)(.*)
+      - path: /frontend
         pathType: Prefix
         backend:
           service:
@@ -21,7 +21,7 @@ spec:
             port:
               number: 80
           namespace: app  # 여기에 올바른 네임스페이스 지정
-      - path: /wordpress(/|$)(.*)
+      - path: /wordpress
         pathType: Prefix
         backend:
           service:
@@ -29,7 +29,7 @@ spec:
             port:
               number: 80
           namespace: app  # 여기에 올바른 네임스페이스 지정
-      - path: /2048(/|$)(.*)
+      - path: /2048
         pathType: Prefix
         backend:
           service:
@@ -37,7 +37,7 @@ spec:
             port:
               number: 10000
           namespace: game  # 여기에 올바른 네임스페이스 지정
-      - path: /mario(/|$)(.*)
+      - path: /mario
         pathType: Prefix
         backend:
           service:
