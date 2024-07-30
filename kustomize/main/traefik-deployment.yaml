@@ -1,32 +1,34 @@
-# traefik-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traefik-ingress-controller
-  namespace: traefik
-  labels:
-    k8s-app: traefik-ingress-lb
+  name: traefik
+  namespace: traefik 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: traefik-ingress-lb
+      app: traefik
   template:
     metadata:
       labels:
-        k8s-app: traefik-ingress-lb
+        app: traefik
     spec:
-      serviceAccountName: traefik-ingress-controller
       containers:
-      - name: traefik
-        image: traefik:v2.4
-        args:
-        - "--api.insecure=true"
-        - "--accesslog"
-        - "--entrypoints.web.address=:80"
-        - "--providers.kubernetescrd"
-        ports:
-        - name: web
-          containerPort: 80
-        - name: admin
-          containerPort: 8080
+        - name: traefik
+          image: traefik:v2.4
+          args:
+            - "--api.insecure=true"
+            - "--accesslog=true"
+            - "--entrypoints.web.address=:80"
+            - "--providers.kubernetescrd"
+          ports:
+            - name: web
+              containerPort: 80
+            - name: admin
+              containerPort: 8080
+          volumeMounts:
+            - mountPath: "/data"
+              name: data
+      volumes:
+        - name: data
+          emptyDir: {}

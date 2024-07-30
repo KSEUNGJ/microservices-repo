@@ -1,17 +1,16 @@
-# traefik-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: traefik
   namespace: traefik
 spec:
+  type: LoadBalancer
   selector:
-    k8s-app: traefik-ingress-lb
+    app: traefik
   ports:
     - protocol: TCP
       port: 80
-      name: web
+      targetPort: 80
     - protocol: TCP
       port: 8080
-      name: admin
-  type: LoadBalancer
+      targetPort: 8080
