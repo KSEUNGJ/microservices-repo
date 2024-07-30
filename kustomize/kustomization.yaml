@@ -5,7 +5,7 @@ resources:
 - game
 - nfs
 - blog
-- ingress      
+  #- ingress      
   #- gke
 patches:
 - patch: |-
@@ -39,7 +39,7 @@ secretGenerator:
   - password=$MysqlDbPW
 
 components:
-- components/ingress-nginx
+  #- components/ingress-nginx
 - components/cadvisor
 - components/rbac
 - components/prometheus
