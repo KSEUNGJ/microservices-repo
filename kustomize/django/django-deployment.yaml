@@ -32,3 +32,10 @@ spec:
           value: "localhost"
         - name: POSTGRES_PORT
           value: "5432"
+        volumeMounts:
+        - name: django-data
+          mountPath: /app/data  # 애플리케이션에서 데이터를 저장할 경로
+      volumes:
+      - name: django-data
+        persistentVolumeClaim:
+          claimName: django-pvc

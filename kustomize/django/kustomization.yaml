@@ -5,6 +5,7 @@ resources:
 - django-deployment.yaml
 - django-service.yaml
 - db-secrets.yaml
+- django-pvc.yaml  
 images:
 - name: yoyoyellow/django
   newTag: latest
