@@ -6,7 +6,7 @@ resources:
 - nfs
 - blog
 - ingress      
-- gke
+  #- gke
 patches:
 - patch: |-
     apiVersion: apps/v1
@@ -46,4 +46,4 @@ components:
 - components/grafana
 - components/node-exporter
 - components/alertmanager
-- components/backendconfig
+  #- components/backendconfig

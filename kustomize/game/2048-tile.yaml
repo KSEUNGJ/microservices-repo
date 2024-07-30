@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: deployment-2048-game
+  name: deployment-2048
   namespace: game  # 네임스페이스 추가
 spec:
   ports:
