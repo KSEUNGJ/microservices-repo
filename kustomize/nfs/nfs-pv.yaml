@@ -11,5 +11,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 43.203.223.91  # EC2 인스턴스의 퍼블릭 IP
+    server: 52.78.1.170 # EC2 인스턴스의 퍼블릭 IP
     path: "/var/nfs/general"  # 확인된 NFS 공유 경로
