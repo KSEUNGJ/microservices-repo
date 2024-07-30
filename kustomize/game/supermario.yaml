@@ -28,8 +28,8 @@ spec:
   selector:
     app: mario
   ports:
-  - port: 77
+  - name: http
+    port: 77
     protocol: TCP
     targetPort: 7897
-  type: NodePort
-  externalTrafficPolicy: Local
+  type: ClusterIP

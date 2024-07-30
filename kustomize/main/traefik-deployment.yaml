@@ -15,15 +15,18 @@ spec:
     spec:
       containers:
         - name: traefik
-          image: traefik:v2.4
+          image: traefik:v2.5
           args:
-            - "--api.insecure=true"
-            - "--accesslog=true"
-            - "--entrypoints.web.address=:80"
-            - "--providers.kubernetescrd"
+            - --api.insecure=true
+            - --accesslog=true
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443 
+            - --providers.kubernetescrd.allowCrossNamespace=True
           ports:
             - name: web
               containerPort: 80
+            - name: websecure
+              containerPort: 443
             - name: admin
               containerPort: 8080
           volumeMounts:

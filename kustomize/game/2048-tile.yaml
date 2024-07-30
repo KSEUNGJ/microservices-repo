@@ -26,10 +26,10 @@ metadata:
   namespace: game  # 네임스페이스 추가
 spec:
   ports:
-    - name: deployment-2048
+    - name: http
       port: 10000
       targetPort: 80
   selector:
     app.kubernetes.io/name: app-2048
-  type: NodePort
+  type: ClusterIP
 

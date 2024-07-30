@@ -1,27 +1,20 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: ingressroute
-  namespace: traefik
+  name: ingressroute-game
+  namespace: game
 spec:
   entryPoints:
     - web
     - websecure
   routes:
-  - match: Host(`cloud1.providehighvalue.com`) && PathPrefix(`/`)
-    kind: Rule
-    services:
-    - name: frontend
-      port: 80
   - match: Host(`cloud1.providehighvalue.com`) && PathPrefix(`/game1`)
     kind: Rule
     services:
     - name: deployment-2048
-      namespace: game
       port: 10000
   - match: Host(`cloud1.providehighvalue.com`) && PathPrefix(`/game2`)
     kind: Rule
     services:
     - name: mario
-      namespace: game
       port: 77
