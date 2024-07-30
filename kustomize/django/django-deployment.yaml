@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-app
+  namespace: main
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: django-app
-        image: yoyoyellow/django:latest  # 여기에 실제 이미지 이름과 태그를 입력하세요
+        image: yoyoyellow/django:latest
         ports:
         - containerPort: 8000
         env:
@@ -28,6 +29,6 @@ spec:
               name: db-secrets
               key: postgres-password
         - name: POSTGRES_HOST
-          value: "localhost"  # 컨테이너 내부에서 실행되므로 localhost
+          value: "localhost"
         - name: POSTGRES_PORT
           value: "5432"
