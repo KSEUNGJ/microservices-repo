@@ -5,10 +5,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - cloud.providehighvalue.com
+    - cloud1.providehighvalue.com
     secretName: providehighvalue-tls
   rules:
-  - host: cloud.providehighvalue.com
+  - host: cloud1.providehighvalue.com 
     http:
       paths:
       - path: /shop
