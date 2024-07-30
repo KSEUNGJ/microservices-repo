@@ -19,7 +19,7 @@ spec:
           service:
             name: frontend
             port:
-              number: 30080
+              number: 80
       - path: /game1
         pathType: Prefix
         backend:
