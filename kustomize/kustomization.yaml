@@ -4,6 +4,9 @@ resources:
 - base
 - game
 - nfs
+- mysql-deployment.yaml
+- wordpress-deployment.yaml      
+
 patches:
 - patch: |-
     apiVersion: apps/v1
@@ -29,7 +32,13 @@ patches:
   target:
     kind: Deployment
     namespace: app
-components:
+
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=$MysqlDbPW
+
+  components:
 - components/cadvisor
 - components/rbac
 - components/prometheus
