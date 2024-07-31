@@ -75,13 +75,13 @@ spec:
             name: deployment-2048
             port:
               number: 10000
-  - host: mario.providehighvalue.com
+  - host: minecraft.providehighvalue.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: mario
+            name: minecraft-service
             port:
               number: 77          
