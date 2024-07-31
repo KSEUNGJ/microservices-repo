@@ -58,4 +58,4 @@ spec:
           service:
             name: minecraft-service
             port:
-              number: 25565          
+              number: 80          
