@@ -54,7 +54,7 @@ metadata:
   name: game-ingress
   namespace: game
   annotations:
-    networking.gke.io/managed-certificates: managed-cert
+    networking.gke.io/managed-certificates: app/managed-cert  # app 네임스페이스의 managed-cert 참조
 spec:
   ingressClassName: nginx
   tls:
