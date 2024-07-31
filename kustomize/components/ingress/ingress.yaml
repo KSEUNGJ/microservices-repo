@@ -26,10 +26,10 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - shop.providehighvalue.com
-    - blog.providehighvalue.com
+    #  tls:
+    #  - hosts:
+    #    - shop.providehighvalue.com
+    #    - blog.providehighvalue.com
   rules:
   - host: shop.providehighvalue.com
     http:
@@ -62,10 +62,10 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - 2048.providehighvalue.com
-    - mario.providehighvalue.com
+    #  tls:
+    #  - hosts:
+    #    - 2048.providehighvalue.com
+    #    - mario.providehighvalue.com
   rules:
   - host: 2048.providehighvalue.com
     http:
