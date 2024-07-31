@@ -18,34 +18,32 @@
 #          service:
 #            name: django-app-service
 #            port:
-#              number: 80
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
   namespace: app
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
   - host: cloud.providehighvalue.com
     http:
       paths:
-      - path: /()(.*)
+      - path: /frontend
         pathType: Prefix
         backend:
           service:
             name: frontend
-            port: 
+            port:
               number: 80
-      - path: /(wp-admin|wp-content|wp-includes|wordpress)(/|$)(.*)
+      - path: /wordpress
         pathType: Prefix
         backend:
           service:
             name: wordpress
-            port: 
+            port:
               number: 80
 ---
 apiVersion: networking.k8s.io/v1
@@ -54,25 +52,25 @@ metadata:
   name: game-ingress
   namespace: game
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
   - host: cloud.providehighvalue.com
     http:
       paths:
-      - path: /2048(/|$)(.*)
+      - path: /2048
         pathType: Prefix
         backend:
           service:
             name: deployment-2048
             port:
               number: 10000
-      - path: /mario(/|$)(.*)
+      - path: /mario
         pathType: Prefix
         backend:
           service:
             name: mario
             port:
               number: 77
+
