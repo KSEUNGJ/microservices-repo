@@ -29,7 +29,7 @@ spec:
         - name: postgres-storage
           mountPath: /var/lib/postgresql/data
           subPath: postgres
-      volumes:
-      - name: postgres-storage
-        persistentVolumeClaim:
-          claimName: postgres-nfs-pvc
+            # volumes:
+            #- name: postgres-storage
+            #persistentVolumeClaim:
+            #claimName: postgres-nfs-pvc
