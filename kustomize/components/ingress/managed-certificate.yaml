@@ -2,7 +2,6 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: managed-cert
-  namespace: app
 spec:
   domains:
     - cloud.providehighvalue.com
