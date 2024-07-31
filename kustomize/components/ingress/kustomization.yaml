@@ -3,4 +3,4 @@ kind: Component
 
 resources:
 - ingress.yaml
-- managed-certificate.yaml  
+  #- managed-certificate.yaml  
