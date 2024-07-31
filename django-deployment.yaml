@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: kimjy1116/cloud6:latest
+        image: kimjy1116/cloud7:latest
         ports:
         - containerPort: 8000
         env:
