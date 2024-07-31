@@ -5,6 +5,7 @@ resources:
 - game
 - nfs
 - blog
+- main  
 secretGenerator:
 - name: mysql-pass
   literals:
