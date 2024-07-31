@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgresql-deployment
-  namespace: main
 spec:
   replicas: 1
   selector:
@@ -26,9 +25,8 @@ spec:
         - name: POSTGRES_PASSWORD
           value: "dkagh"
         volumeMounts:
-        - name: postgresql-storage
-          mountPath: /var/lib/postgresql/data
-          subPath: postgres
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-storage
       volumes:
-      - name: postgresql-storage
+      - name: postgres-storage
         emptyDir: {}
