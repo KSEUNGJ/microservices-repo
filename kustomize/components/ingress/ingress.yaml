@@ -27,10 +27,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - frontend.cloud.providehighvalue.com
-    - wordpress.cloud.providehighvalue.com
+    - shop.providehighvalue.com
+    - blog.providehighvalue.com
   rules:
-  - host: frontend.cloud.providehighvalue.com
+  - host: shop.providehighvalue.com
     http:
       paths:
       - path: /
@@ -40,7 +40,7 @@ spec:
             name: frontend
             port:
               number: 80
-  - host: wordpress.cloud.providehighvalue.com
+  - host: blog.providehighvalue.com
     http:
       paths:
       - path: /
@@ -62,10 +62,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - 2048.cloud.providehighvalue.com
-    - mario.cloud.providehighvalue.com
+    - 2048.providehighvalue.com
+    - mario.providehighvalue.com
   rules:
-  - host: 2048.cloud.providehighvalue.com
+  - host: 2048.providehighvalue.com
     http:
       paths:
       - path: /
@@ -75,7 +75,7 @@ spec:
             name: deployment-2048
             port:
               number: 10000
-  - host: mario.cloud.providehighvalue.com
+  - host: mario.providehighvalue.com
     http:
       paths:
       - path: /
@@ -84,4 +84,4 @@ spec:
           service:
             name: mario
             port:
-              number: 77
+              number: 77          
