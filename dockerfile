@@ -22,5 +22,10 @@ RUN python manage.py collectstatic --noinput
 # Expose the port that the application will run on
 EXPOSE 8000
 
+# Set environment variables for the superuser credentials
+ENV DJANGO_SUPERUSER_USERNAME=cloud
+ENV DJANGO_SUPERUSER_PASSWORD=dkagh
+ENV DJANGO_SUPERUSER_EMAIL=cloud@gmail.com
+
 # Command to run the Django application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL && gunicorn --bind 0.0.0.0:8000 config.wsgi:application"]

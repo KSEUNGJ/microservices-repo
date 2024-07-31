@@ -22,7 +22,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 LOGIN_URL = 'login'  # Point to the name of your custom login URL
