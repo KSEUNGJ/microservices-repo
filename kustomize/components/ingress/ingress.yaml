@@ -5,7 +5,13 @@ metadata:
   namespace: app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    networking.gke.io/managed-certificates: managed-cert
+    kubernetes.io/ingress.allow-http: "false"
 spec:
+  tls:
+  - hosts:
+    - shop.providehighvalue.com
+    - blog.providehighvalue.com
   ingressClassName: nginx
   rules:
   - host: shop.providehighvalue.com
@@ -36,7 +42,13 @@ metadata:
   namespace: game
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    networking.gke.io/managed-certificates: managed-cert
+    kubernetes.io/ingress.allow-http: "false"
 spec:
+  tls:
+  - hosts:
+    - 2048.providehighvalue.com
+    - minecraft.providehighvalue.com
   ingressClassName: nginx
   rules:
   - host: 2048.providehighvalue.com
@@ -58,4 +70,4 @@ spec:
           service:
             name: minecraft-service
             port:
-              number: 80          
+              number: 80
