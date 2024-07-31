@@ -4,7 +4,7 @@ metadata:
   name: managed-cert
 spec:
   domains:
-#   - main.providehighvalue.com
+    - main.providehighvalue.com
     - shop.providehighvalue.com
     - blog.providehighvalue.com
     - 2048.providehighvalue.com
