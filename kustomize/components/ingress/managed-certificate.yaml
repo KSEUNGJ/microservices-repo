@@ -1,4 +1,3 @@
-# components/ingress/managed-certificate.yaml
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:

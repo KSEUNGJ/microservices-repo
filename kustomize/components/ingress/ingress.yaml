@@ -23,25 +23,24 @@ metadata:
   name: app-ingress
   namespace: app
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    networking.gke.io/managed-certificates: managed-cert  # 이 줄 추가  
+    networking.gke.io/managed-certificates: managed-cert
 spec:
   ingressClassName: nginx
-  tls:  # 이 섹션 추가
+  tls:
   - hosts:
-    - cloud.providehighvalue.com  
+    - cloud.providehighvalue.com
   rules:
   - host: cloud.providehighvalue.com
     http:
       paths:
-      - path: /frontend(/|$)(.*)
+      - path: /frontend
         pathType: Prefix
         backend:
           service:
             name: frontend
             port:
               number: 80
-      - path: /wordpress(/|$)(.*)
+      - path: /wordpress
         pathType: Prefix
         backend:
           service:
@@ -55,25 +54,24 @@ metadata:
   name: game-ingress
   namespace: game
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    networking.gke.io/managed-certificates: managed-cert  # 이 줄 추가  
+    networking.gke.io/managed-certificates: managed-cert  # app 네임스페이스의 managed-cert 참조
 spec:
   ingressClassName: nginx
-  tls:  # 이 섹션 추가
+  tls:
   - hosts:
-    - cloud.providehighvalue.com  
+    - cloud.providehighvalue.com
   rules:
   - host: cloud.providehighvalue.com
     http:
       paths:
-      - path: /2048(/|$)(.*)
+      - path: /2048
         pathType: Prefix
         backend:
           service:
             name: deployment-2048
             port:
               number: 10000
-      - path: /mario(/|$)(.*)
+      - path: /mario
         pathType: Prefix
         backend:
           service:
