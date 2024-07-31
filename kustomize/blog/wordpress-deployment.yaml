@@ -18,6 +18,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: wp-pv-claim
+  namespace: app
   labels:
     app: wordpress
 spec:
@@ -27,7 +28,6 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  volumeName: wp-nfs-pv  # 이 줄을 추가하여 특정 PV와 연결
 ---
 apiVersion: apps/v1
 kind: Deployment
