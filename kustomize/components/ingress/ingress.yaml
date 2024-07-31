@@ -15,32 +15,35 @@
 #      - path: /
 #        pathType: Prefix
 #        backend:
-#          service:
+#          service
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
   namespace: app
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-      #networking.gke.io/managed-certificates: managed-cert
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - cloud.providehighvalue.com
+    - frontend.cloud.providehighvalue.com
+    - wordpress.cloud.providehighvalue.com
   rules:
-  - host: cloud.providehighvalue.com
+  - host: frontend.cloud.providehighvalue.com
     http:
       paths:
-      - path: /frontend(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: frontend
             port:
               number: 80
-      - path: /wordpress(/|$)(.*)
+  - host: wordpress.cloud.providehighvalue.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
@@ -54,25 +57,28 @@ metadata:
   name: game-ingress
   namespace: game
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-      #networking.gke.io/managed-certificates: managed-cert
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - cloud.providehighvalue.com
+    - 2048.cloud.providehighvalue.com
+    - mario.cloud.providehighvalue.com
   rules:
-  - host: cloud.providehighvalue.com
+  - host: 2048.cloud.providehighvalue.com
     http:
       paths:
-      - path: /2048(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: deployment-2048
             port:
               number: 10000
-      - path: /mario(/|$)(.*)
+  - host: mario.cloud.providehighvalue.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
