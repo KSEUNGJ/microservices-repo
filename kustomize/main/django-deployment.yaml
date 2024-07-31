@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-deployment
+  namespace: main
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: kimjy1116/cloud3:latest
+        image: kimjy1116/cloud7:latest
         ports:
         - containerPort: 8000
         env:
@@ -32,3 +33,9 @@ spec:
           value: "postgresql-service"
         - name: POSTGRES_PORT
           value: "5432"
+        - name: DJANGO_SUPERUSER_USERNAME
+          value: "cloud"
+        - name: DJANGO_SUPERUSER_PASSWORD
+          value: "dkagh"
+        - name: DJANGO_SUPERUSER_EMAIL
+          value: "cloud@gmail.com"

@@ -2,13 +2,13 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: django-migrate-job
-  namespace: main
+  namespace: main  
 spec:
   template:
     spec:
       containers:
       - name: django-migrate
-        image: kimjy1116/cloud3:latest
+        image: kimjy1116/cloud7:latest
         command: ["python"]
         args: ["manage.py", "migrate"]
         env:
