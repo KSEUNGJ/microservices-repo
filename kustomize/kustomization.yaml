@@ -6,31 +6,31 @@ resources:
 - nfs
 - blog
 - django
-patches:
-- patch: |-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: not-important
-      namespace: app
-    spec:
-      template:
-        metadata:
-          labels:
-            app: microservice
-        spec:
-          volumes:
-          - name: nfs-volume
-            persistentVolumeClaim:
-              claimName: nfs-pvc
-          containers:
-          - name: not-important
-            volumeMounts:
-            - name: nfs-volume
-              mountPath: /mnt/nfs
-  target:
-    kind: Deployment
-    namespace: app
+  #patches:
+  #- patch: |-
+  #    apiVersion: apps/v1
+  #    kind: Deployment
+  #    metadata:
+  #      name: not-important
+  #      namespace: app
+  #    spec:
+  #      template:
+  #        metadata:
+  #          labels:
+  #            app: microservice
+  #        spec:
+  #          volumes:
+  #          - name: nfs-volume
+  #            persistentVolumeClaim:
+  #              claimName: nfs-pvc
+  #          containers:
+  #          - name: not-important
+  #            volumeMounts:
+  #            - name: nfs-volume
+  #              mountPath: /mnt/nfs
+  #  target:
+  #    kind: Deployment
+  #    namespace: app
 
 secretGenerator:
 - name: mysql-pass
