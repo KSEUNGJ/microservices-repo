@@ -26,8 +26,10 @@ spec:
         - name: POSTGRES_PASSWORD
           value: "dkagh"
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: postgres-storage
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
       volumes:
       - name: postgres-storage
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: postgres-nfs-pvc

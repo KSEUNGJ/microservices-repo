@@ -33,3 +33,10 @@ spec:
           value: "postgresql-service"
         - name: POSTGRES_PORT
           value: "5432"
+        volumeMounts:
+        - name: django-data
+          mountPath: /app/data  # Django 데이터 저장 경로 (필요에 따라 조정)
+      volumes:
+      - name: django-data
+        persistentVolumeClaim:
+          claimName: django-nfs-pvc
