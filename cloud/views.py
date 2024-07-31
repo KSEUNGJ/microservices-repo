@@ -6,7 +6,7 @@ from .forms import CustomUserCreationForm
 
 
 def index(request):
-    return render(request, 'cloud/index.html')
+    return render(request, 'index.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -19,7 +19,7 @@ def login_view(request):
             return redirect('index')
     else:
         form = AuthenticationForm()
-    return render(request, 'cloud/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 def logout_view(request):
     user = request.user
@@ -37,5 +37,5 @@ def register_view(request):
             return redirect('index')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'cloud/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
