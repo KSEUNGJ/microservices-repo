@@ -24,8 +24,12 @@ metadata:
   namespace: app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    networking.gke.io/managed-certificates: managed-cert  # 이 줄 추가  
 spec:
   ingressClassName: nginx
+  tls:  # 이 섹션 추가
+  - hosts:
+    - cloud.providehighvalue.com  
   rules:
   - host: cloud.providehighvalue.com
     http:
@@ -52,8 +56,12 @@ metadata:
   namespace: game
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    networking.gke.io/managed-certificates: managed-cert  # 이 줄 추가  
 spec:
   ingressClassName: nginx
+  tls:  # 이 섹션 추가
+  - hosts:
+    - cloud.providehighvalue.com  
   rules:
   - host: cloud.providehighvalue.com
     http:
