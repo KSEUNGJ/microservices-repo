@@ -60,3 +60,14 @@ spec:
             name: deployment-2048
             port:
               number: 10000
+               
+  - host: mario.providehighvalue.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: minecraft-service
+            port:
+              number: 80
