@@ -5,12 +5,13 @@ metadata:
   namespace: main
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    networking.gke.io/managed-certificates: managed-cert
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
     - main.providehighvalue.com
+    secretName: main-tls
   ingressClassName: nginx
   rules:
   - host: main.providehighvalue.com
@@ -31,13 +32,14 @@ metadata:
   namespace: app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    networking.gke.io/managed-certificates: managed-cert
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
     - shop.providehighvalue.com
     - blog.providehighvalue.com
+    secretName: app-tls
   ingressClassName: nginx
   rules:
   - host: shop.providehighvalue.com
@@ -68,12 +70,13 @@ metadata:
   namespace: game
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    networking.gke.io/managed-certificates: managed-cert
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
     - 2048.providehighvalue.com
+    secretName: game-tls
   ingressClassName: nginx
   rules:
   - host: 2048.providehighvalue.com
@@ -86,4 +89,3 @@ spec:
             name: deployment-2048
             port:
               number: 10000
-               
