@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: main-ingress
-  namespace: app
+  namespace: main
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     networking.gke.io/managed-certificates: managed-cert
     kubernetes.io/ingress.allow-http: "false"
 spec:
@@ -16,7 +16,7 @@ spec:
   - host: main.providehighvalue.com
     http:
       paths:
-      - path: /
+      - path: /(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -87,13 +87,3 @@ spec:
             port:
               number: 10000
                
-  - host: mario.providehighvalue.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: minecraft-service
-            port:
-              number: 80
