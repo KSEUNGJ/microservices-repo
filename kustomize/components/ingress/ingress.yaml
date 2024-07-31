@@ -19,15 +19,12 @@
 #            name: django-app-service
 #            port:
 #              number: 80
-          
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
   namespace: app
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
@@ -56,9 +53,8 @@ metadata:
   name: game-ingress
   namespace: game
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec: 
+spec:
   ingressClassName: nginx
   rules:
   - host: cloud.providehighvalue.com
@@ -69,12 +65,12 @@ spec:
         backend:
           service:
             name: deployment-2048
-            port: 
+            port:
               number: 10000
       - path: /mario
         pathType: Prefix
         backend:
           service:
             name: mario
-            port: 
+            port:
               number: 77
