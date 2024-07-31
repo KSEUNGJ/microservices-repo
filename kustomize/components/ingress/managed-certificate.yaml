@@ -1,8 +1,10 @@
-# components/ingress/managed-certificate.yaml
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: managed-cert
 spec:
   domains:
-    - cloud.providehighvalue.com
+    - shop.providehighvalue.com
+    - blog.providehighvalue.com
+    - 2048.providehighvalue.com
+    - minecraft.providehighvalue.com
