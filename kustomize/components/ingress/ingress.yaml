@@ -4,7 +4,7 @@ metadata:
   name: main-ingress
   namespace: main
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
     networking.gke.io/managed-certificates: managed-cert
     kubernetes.io/ingress.allow-http: "false"
 spec:
@@ -16,7 +16,7 @@ spec:
   - host: main.providehighvalue.com
     http:
       paths:
-      - path: /(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
