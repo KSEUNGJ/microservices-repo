@@ -34,38 +34,11 @@ metadata:
 spec:
   capacity:
     storage: 20Gi
+  volumeMode: Filesystem
   accessModes:
-  - ReadWriteOnce
-  nfs:
-    server: 52.78.1.170 # NFS-Server 의 IP
-    path: /nfs4-share2      # NFS 저장소
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: django-nfs-pv
-spec:
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteMany
+    - ReadWriteMany  # WordPress를 위해 ReadWriteMany로 변경
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
     server: 52.78.1.170
-    path: "/var/nfs/django"  # Django 데이터를 위한 새 경로
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: postgres-nfs-pv
-spec:
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs
-  nfs:
-    server: 52.78.1.170
-    path: "/var/nfs/postgres"  # PostgreSQL 데이터를 위한 새 경로
+    path: "/nfs4-share2"
