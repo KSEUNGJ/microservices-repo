@@ -5,7 +5,7 @@ resources:
 - game
 - nfs
 - blog
-- django
+  #- django
   #patches:
   #- patch: |-
   #    apiVersion: apps/v1
