@@ -19,5 +19,5 @@ components:
 - components/grafana
 - components/node-exporter
 - components/alertmanager
-- components/ingress-nginx
-- components/ingress
+  #- components/ingress-nginx
+  #- components/ingress
