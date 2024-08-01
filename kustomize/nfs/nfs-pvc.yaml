@@ -39,15 +39,3 @@ spec:
       storage: 20Gi
   storageClassName: nfs
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wp-pv-claim
-  namespace: app
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: nfs
-  resources:
-    requests:
-      storage: 20Gi
