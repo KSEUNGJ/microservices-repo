@@ -1,9 +1,8 @@
----
 apiVersion: v1
 kind: Service
 metadata:
   name: wordpress
-  namespace: app
+  namespace: blog
   labels:
     app: wordpress
 spec:
@@ -14,26 +13,11 @@ spec:
     tier: frontend
   type: ClusterIP
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wp-pv-claim
-  namespace: app
-  labels:
-    app: wordpress
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: nfs
-  resources:
-    requests:
-      storage: 20Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress
-  namespace: app
+  namespace: blog
   labels:
     app: wordpress
 spec:
