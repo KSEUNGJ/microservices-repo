@@ -43,7 +43,7 @@ spec:
         - name: DJANGO_SUPERUSER_EMAIL
           value: "cloud@gmail.com"
         - name: SKIP_SUPERUSER_CREATION
-          value: "false"
+          value: "True"
             #volumes:
             #- name: django-data
             #persistentVolumeClaim:
