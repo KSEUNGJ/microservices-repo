@@ -16,10 +16,13 @@ def login_view(request):
             login(request, user)
             user.login_time = timezone.now()
             user.save()
-            return redirect('index')
+            return JsonResponse({'success': True, 'redirect_url': '/'})  # '/'는 index 페이지 URL
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
 
 def logout_view(request):
     user = request.user
@@ -34,7 +37,9 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return JsonResponse({'success': True, 'redirect_url': '/'})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})

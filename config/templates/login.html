@@ -1,115 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #333;
-            margin: 0;
-        }
-        .login-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
-        }
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-        .login-container form {
-            display: flex;
-            flex-direction: column;
-        }
-        .login-container form .form-group {
-            margin-bottom: 15px;
-        }
-        .login-container form .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #555;
-        }
-        .login-container form .form-group input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-        .login-container form .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .login-container form .form-options .stay-signed-in {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: #555;
-        }
-        .login-container form .form-options .ip-security {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: #555;
-        }
-        .login-container form .form-options .ip-security span {
-            margin-left: 5px;
-        }
-        .login-container form button {
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4caf50;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .login-container form button:hover {
-            background-color: #45a049;
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+        margin: 0;
+      }
+      .login-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
+      }
+      .login-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+      }
+      .login-container form {
+        display: flex;
+        flex-direction: column;
+      }
+      .login-container form .form-group {
+        margin-bottom: 15px;
+      }
+      .login-container form .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #555;
+      }
+      .login-container form .form-group input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+      .login-container form .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .login-container form .form-options .stay-signed-in {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+      }
+      .login-container form .form-options .ip-security {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+      }
+      .login-container form .form-options .ip-security span {
+        margin-left: 5px;
+      }
+      .login-container form button {
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .login-container form button:hover {
+        background-color: #45a049;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="login-container">
-        <h2>Login</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="id_username">ID</label>
-                {{ form.username }}
-            </div>
-            <div class="form-group">
-                <label for="id_password">Password</label>
-                {{ form.password }}
-            </div>
-            <div class="form-options">
-                <div class="stay-signed-in">
-                    <input type="checkbox" id="stay_signed_in" name="stay_signed_in">
-                    <label for="stay_signed_in">Stay Signed in</label>
-                </div>
-                <div class="ip-security">
-                    <span>IP Security</span>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-            <button type="submit">Sign in</button>
-        </form>
+      <h2>Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_username">ID</label>
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          <label for="id_password">Password</label>
+          {{ form.password }}
+        </div>
+        <div class="form-options">
+          <div class="stay-signed-in">
+            <input type="checkbox" id="stay_signed_in" name="stay_signed_in" />
+            <label for="stay_signed_in">Stay Signed in</label>
+          </div>
+          <div class="ip-security">
+            <span>IP Security</span>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <button type="submit">Sign in</button>
+      </form>
     </div>
-</body>
+    <script>
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+
+      const csrftoken = getCookie("csrftoken");
+
+      function csrfSafeMethod(method) {
+        return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+      }
+
+      $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        },
+      });
+    </script>
+  </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             display: flex;
@@ -12,6 +13,7 @@
             height: 100vh;
             background-color: #333;
             margin: 0;
+            font-family: Arial, sans-serif;
         }
         .register-container {
             background-color: white;
@@ -31,24 +33,29 @@
             display: flex;
             flex-direction: column;
         }
-        .register-container form .form-group {
+        .form-group {
             margin-bottom: 15px;
         }
-        .register-container form .form-group label {
+        .form-group label {
             display: block;
             margin-bottom: 5px;
             font-size: 14px;
             color: #555;
         }
-        .register-container form .form-group input {
+        .form-group input {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid black;  /* Change border color to black */
+            border: 1px solid black;
             box-sizing: border-box;
             font-size: 14px;
         }
-        .register-container form button {
+        .form-group .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        button[type="submit"] {
             padding: 12px;
             border: none;
             border-radius: 5px;
@@ -57,8 +64,12 @@
             font-size: 16px;
             cursor: pointer;
         }
-        .register-container form button:hover {
+        button[type="submit"]:hover {
             background-color: #45a049;
+        }
+        #password-strength {
+            font-size: 12px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -68,27 +79,104 @@
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
-                <label for="id_username">Username</label>
+                <label for="{{ form.username.id_for_label }}">Username</label>
                 {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error">{{ form.username.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
-                <label for="id_name">Name</label>
+                <label for="{{ form.name.id_for_label }}">Name</label>
                 {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="error">{{ form.name.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
-                <label for="id_email">Email</label>
+                <label for="{{ form.email.id_for_label }}">Email</label>
                 {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error">{{ form.email.errors }}</div>
+                {% endif %}
             </div>
             <div class="form-group">
-                <label for="id_password1">Password</label>
+                <label for="{{ form.password1.id_for_label }}">Password</label>
                 {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="error">{{ form.password1.errors }}</div>
+                {% endif %}
+                <div id="password-strength"></div>
             </div>
             <div class="form-group">
-                <label for="id_password2">Confirm Password</label>
+                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
                 {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="error">{{ form.password2.errors }}</div>
+                {% endif %}
             </div>
             <button type="submit">Register</button>
         </form>
     </div>
+    <script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    // Password strength checker
+    $(document).ready(function() {
+        $('#{{ form.password1.id_for_label }}').on('input', function() {
+            var password = $(this).val();
+            var strength = 0;
+            if (password.length > 7) strength++;
+            if (password.match(/[a-z]+/)) strength++;
+            if (password.match(/[A-Z]+/)) strength++;
+            if (password.match(/[0-9]+/)) strength++;
+            if (password.match(/[$@#&!]+/)) strength++;
+
+            var strengthText = '';
+            switch(strength) {
+                case 0:
+                case 1:
+                    strengthText = 'Weak';
+                    break;
+                case 2:
+                    strengthText = 'Fair';
+                    break;
+                case 3:
+                    strengthText = 'Good';
+                    break;
+                case 4:
+                case 5:
+                    strengthText = 'Strong';
+                    break;
+            }
+            $('#password-strength').text('Password strength: ' + strengthText);
+        });
+    });
+    </script>
 </body>
 </html>

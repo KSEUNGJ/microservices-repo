@@ -1,6 +1,11 @@
+import os
+import sys
+import django
 from django.contrib.auth import get_user_model
 from django.core.management import execute_from_command_line
-import os
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+django.setup()
 
 User = get_user_model()
 
@@ -16,7 +21,11 @@ def create_superuser_if_not_exists():
         print(f"Superuser {username} already exists.")
 
 if __name__ == "__main__":
+    # Apply migrations
     execute_from_command_line(["manage.py", "migrate"])
-    if os.environ.get('SKIP_SUPERUSER_CREATION') != 'true':
-        create_superuser_if_not_exists()
+
+    # Create superuser if it doesn't exist
+    create_superuser_if_not_exists()
+
+    # Start the server
     execute_from_command_line(["manage.py", "runserver", "0.0.0.0:8000"])
