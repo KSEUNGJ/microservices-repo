@@ -27,7 +27,9 @@ spec:
           value: "dkagh"
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: postgres-storage
+          name: postgresql-storage
+          subPath: postgres  # 데이터베이스 파일을 서브디렉토리에 저장
       volumes:
-      - name: postgres-storage
-        emptyDir: {}
+      - name: postgresql-storage
+        persistentVolumeClaim:
+          claimName: postgresql-pvc

@@ -44,3 +44,36 @@ spec:
   nfs:
     server: 52.78.1.170
     path: "/nfs4-share2/wordpress"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: django-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 52.78.1.170  # AWS NFS 서버의 IP
+    path: "/var/nfs/django"  # Django용 NFS 경로
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresql-pv
+  namespace: main
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    server: 52.78.1.170  # AWS NFS 서버의 IP
+    path: "/var/nfs/postgresql"  # PostgreSQL용 NFS 경로
