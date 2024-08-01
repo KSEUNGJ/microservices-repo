@@ -60,12 +60,14 @@ spec:
   nfs:
     server: 52.78.1.170  # AWS NFS 서버의 IP
     path: "/var/nfs/django"  # Django용 NFS 경로
+  claimRef:
+    namespace: main
+    name: django-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: postgresql-pv
-  namespace: main
 spec:
   capacity:
     storage: 20Gi
@@ -77,3 +79,6 @@ spec:
   nfs:
     server: 52.78.1.170  # AWS NFS 서버의 IP
     path: "/var/nfs/postgresql"  # PostgreSQL용 NFS 경로
+  claimRef:
+    namespace: main
+    name: postgresql-pvc      
