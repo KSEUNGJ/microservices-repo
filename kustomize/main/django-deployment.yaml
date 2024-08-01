@@ -36,12 +36,14 @@ spec:
           value: "postgresql-service"
         - name: POSTGRES_PORT
           value: "5432"
-            # - name: DJANGO_SUPERUSER_USERNAME
-            #   value: "cloud"
-            # - name: DJANGO_SUPERUSER_PASSWORD
-            #  value: "dkagh"
-        #- name: DJANGO_SUPERUSER_EMAIL
-        #  value: "cloud@gmail.com"
+        - name: DJANGO_SUPERUSER_USERNAME
+          value: "cloud"
+        - name: DJANGO_SUPERUSER_PASSWORD
+          value: "dkagh"
+        - name: DJANGO_SUPERUSER_EMAIL
+          value: "cloud@gmail.com"
+        - name: SKIP_SUPERUSER_CREATION
+          value: "true"
       volumes:
       - name: django-data
         persistentVolumeClaim:
