@@ -17,10 +17,10 @@ spec:
       - name: django
         image: kimjy1116/cloud7:latest
         ports:
+        - containerPort: 8000
         volumeMounts:
         - name: django-data
-          mountPath: /app/data  # Django 애플리케이션의 데이터 저장 경로  
-        - containerPort: 8000
+          mountPath: /app/data  # Django 애플리케이션의 데이터 저장 경로
         env:
         - name: DJANGO_SECRET_KEY
           value: "qf+-jk+h4d+9@2r!%=frdh!ng7ek@l!54%^sqskttk(rvd%&so"
