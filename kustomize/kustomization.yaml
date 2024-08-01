@@ -9,6 +9,7 @@ resources:
 
 secretGenerator:
 - name: mysql-pass
+  namespace: blog
   literals:
   - password=$MysqlDbPW
 
