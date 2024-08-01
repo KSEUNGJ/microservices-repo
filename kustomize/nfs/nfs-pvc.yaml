@@ -11,19 +11,19 @@ spec:
       storage: 5Gi  # PV의 용량과 일치해야 함
   storageClassName: nfs
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: django-pvc
-  namespace: main
-spec:
-  accessModes:
-    - ReadWriteMany
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: nfs
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: django-pvc
+#  namespace: main
+#spec:
+#  accessModes:
+#    - ReadWriteMany
+#  volumeMode: Filesystem
+#  resources:
+#    requests:
+#      storage: 5Gi
+#  storageClassName: nfs
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
