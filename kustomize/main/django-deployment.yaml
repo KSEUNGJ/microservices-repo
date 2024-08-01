@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: kimjy1116/cloud9:latest
+        image: kimjy1116/cloud10:latest
         ports:
         - containerPort: 8000
           #volumeMounts:
