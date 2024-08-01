@@ -33,8 +33,6 @@ kind: PersistentVolume
 metadata:
   name: wp-nfs-pv
   namespace: app
-  labels:
-    app.kubernetes.io/instance: app
 spec:
   capacity:
     storage: 20Gi
