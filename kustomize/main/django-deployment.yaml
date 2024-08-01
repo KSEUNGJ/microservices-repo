@@ -25,7 +25,7 @@ spec:
         - name: DJANGO_SECRET_KEY
           value: "qf+-jk+h4d+9@2r!%=frdh!ng7ek@l!54%^sqskttk(rvd%&so"
         - name: DJANGO_ALLOWED_HOSTS
-          value: "*"
+          value: "main.providehighvalue.com"
         - name: POSTGRES_DB
           value: "mydatabase"
         - name: POSTGRES_USER
