@@ -17,6 +17,7 @@ metadata:
   name: mysql-pv-claim
   namespace: blog
 spec:
+  storageClassName: ""  # 이 줄을 추가
   accessModes:
     - ReadWriteOnce
   resources:
@@ -30,6 +31,7 @@ metadata:
   name: wp-pv-claim
   namespace: blog
 spec:
+  storageClassName: ""  # 이 줄을 추가
   accessModes:
     - ReadWriteOnce
   resources:
