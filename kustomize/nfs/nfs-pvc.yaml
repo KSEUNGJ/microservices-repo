@@ -19,10 +19,11 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs
+  volumeMode: Filesystem
   resources:
     requests:
       storage: 5Gi
+  storageClassName: nfs
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -32,7 +33,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs
+  volumeMode: Filesystem
   resources:
     requests:
       storage: 20Gi
+  storageClassName: nfs

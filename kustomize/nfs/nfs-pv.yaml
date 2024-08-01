@@ -58,11 +58,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 52.78.1.170  # AWS NFS 서버의 IP
-    path: "/var/nfs/django"  # Django용 NFS 경로
-  claimRef:
-    namespace: main
-    name: django-pvc
+    server: 52.78.1.170
+    path: "/var/nfs/django"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -77,8 +74,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    server: 52.78.1.170  # AWS NFS 서버의 IP
-    path: "/var/nfs/postgresql"  # PostgreSQL용 NFS 경로
-  claimRef:
-    namespace: main
-    name: postgresql-pvc      
+    server: 52.78.1.170
+    path: "/var/nfs/postgresql"
