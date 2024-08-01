@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: yoyoyellow/cloud:latest
+        image: yoyoyellow/cloud:1.1
         imagePullPolicy: Always  
         ports:
         - containerPort: 8000
