@@ -18,14 +18,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-mysql
+  name: mysql-nfs-pv
+  nmaespace: blog
 spec:
-  storageClassName: ""  # 이 줄을 추가
   capacity:
-    storage: 5Gi
+    storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 52.78.1.170
     path: "/var/nfs/mysql/"
@@ -33,33 +32,16 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-wordpress
+  name: wp-nfs-pv
+  namespace: blog
 spec:
-  storageClassName: ""  # 이 줄을 추가
   capacity:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 52.78.1.170
     path: "/var/nfs/wordpress"
----
-#apiVersion: v1
-#kind: PersistentVolume
-#metadata:
-#  name: django-pv
-#spec:
-#  capacity:
-#    storage: 5Gi
-#  volumeMode: Filesystem
-#  accessModes:
-#    - ReadWriteMany
-#  persistentVolumeReclaimPolicy: Retain
-#  storageClassName: nfs
-#  nfs:
-#    server: 52.78.1.170
-#    path: "/var/nfs/django"
 ---
 apiVersion: v1
 kind: PersistentVolume

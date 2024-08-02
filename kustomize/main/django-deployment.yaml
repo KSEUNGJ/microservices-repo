@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: kimjy1116/cloud18:t2
+        image: kimjy1116/cloud18:t3
         imagePullPolicy: Always  
         ports:
         - containerPort: 8000
