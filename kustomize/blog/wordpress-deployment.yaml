@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     define( 'ABSPATH', __DIR__ . '/' );
 }
 require_once ABSPATH . 'wp-settings.php';
-EOF
+'EOF'
           fi
           chown www-data:www-data /var/www/html/wp-config.php
           echo "Initialization completed successfully."
