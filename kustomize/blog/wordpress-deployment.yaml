@@ -52,28 +52,7 @@ spec:
         image: busybox
         command:
         - /bin/sh
-        - -c
-        - |
-          if [ -f /var/www/html/wp-config.php ]; then
-            echo "wp-config.php already exists. Skipping creation."
-          else
-            echo "wp-config.php does not exist. Creating it."
-            cat << 'EOF' > /var/www/html/wp-config.php
-<?php
-define('DB_NAME', 'wordpress');
-define('DB_USER', 'wordpress');
-define('DB_PASSWORD', '${WORDPRESS_DB_PASSWORD}');
-define('DB_HOST', 'wordpress-mysql');
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', true);
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', __DIR__ . '/' );
-}
-require_once ABSPATH . 'wp-settings.php';
-'EOF'
-          fi
-          chown www-data:www-data /var/www/html/wp-config.php
-          echo "Initialization completed successfully."
+        - /scripts/init.sh
         env:
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
@@ -83,6 +62,8 @@ require_once ABSPATH . 'wp-settings.php';
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
+        - name: init-script
+          mountPath: /scripts
       containers:
       - image: wordpress:6.2.1-apache
         name: wordpress
@@ -112,3 +93,7 @@ require_once ABSPATH . 'wp-settings.php';
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
+      - name: init-script
+        configMap:
+          name: wordpress-init-script
+          defaultMode: 0755
