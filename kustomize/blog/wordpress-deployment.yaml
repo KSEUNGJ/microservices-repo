@@ -54,7 +54,10 @@ spec:
         - /bin/sh
         - -c
         - |
-          if [ ! -f /var/www/html/wp-config.php ]; then
+          if [ -f /var/www/html/wp-config.php ]; then
+            echo "wp-config.php already exists. Skipping creation."
+          else
+            echo "wp-config.php does not exist. Creating it."
             cat << EOF > /var/www/html/wp-config.php
             <?php
             define('DB_NAME', 'wordpress');
@@ -70,6 +73,7 @@ spec:
             EOF
           fi
           chown www-data:www-data /var/www/html/wp-config.php
+          echo "Initialization completed successfully."
         env:
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
@@ -83,6 +87,10 @@ spec:
       - image: wordpress:6.2.1-apache
         name: wordpress
         env:
+        - name: WORDPRESS_CONFIG_EXTRA
+          value: |
+            define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+            define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
         - name: WORDPRESS_DB_USER
