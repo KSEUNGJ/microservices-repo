@@ -59,18 +59,18 @@ spec:
           else
             echo "wp-config.php does not exist. Creating it."
             cat << 'EOF' > /var/www/html/wp-config.php
-<?php
-define('DB_NAME', 'wordpress');
-define('DB_USER', 'wordpress');
-define('DB_PASSWORD', '${WORDPRESS_DB_PASSWORD}');
-define('DB_HOST', 'wordpress-mysql');
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', true);
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', __DIR__ . '/' );
-}
-require_once ABSPATH . 'wp-settings.php';
-EOF
+            <?php
+            define('DB_NAME', 'wordpress');
+            define('DB_USER', 'wordpress');
+            define('DB_PASSWORD', '${WORDPRESS_DB_PASSWORD}');
+            define('DB_HOST', 'wordpress-mysql');
+            define('WP_DEBUG', true);
+            define('WP_DEBUG_LOG', true);
+            if ( ! defined( 'ABSPATH' ) ) {
+                define( 'ABSPATH', __DIR__ . '/' );
+            }
+            require_once ABSPATH . 'wp-settings.php';
+            EOF
           fi
           chown www-data:www-data /var/www/html/wp-config.php
           echo "Initialization completed successfully."
