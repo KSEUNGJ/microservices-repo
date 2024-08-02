@@ -14,11 +14,11 @@ secretGenerator:
   - password=$MysqlDbPW
 
 components:
-  #- components/cadvisor
-  #- components/rbac
-  #- components/prometheus
-  #- components/grafana
-  #- components/node-exporter
-  #- components/alertmanager
+- components/cadvisor
+- components/rbac
+- components/prometheus
+- components/grafana
+- components/node-exporter
+- components/alertmanager
 - components/ingress-nginx
 - components/ingress
