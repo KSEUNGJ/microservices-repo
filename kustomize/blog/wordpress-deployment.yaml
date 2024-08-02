@@ -58,7 +58,7 @@ spec:
             echo "wp-config.php already exists. Skipping creation."
           else
             echo "wp-config.php does not exist. Creating it."
-            cat << EOF > /var/www/html/wp-config.php
+            cat << 'EOF' > /var/www/html/wp-config.php
 <?php
 define('DB_NAME', 'wordpress');
 define('DB_USER', 'wordpress');
