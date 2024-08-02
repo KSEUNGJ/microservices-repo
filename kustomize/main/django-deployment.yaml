@@ -15,16 +15,13 @@ spec:
     spec:
       containers:
       - name: django
-        image: yoyoyellow/cloud:1.1
+        image: kimjy1116/cloud18:t2
         imagePullPolicy: Always  
         ports:
         - containerPort: 8000
-          #volumeMounts:
-          #- name: django-data
-          # mountPath: /app/data  # Django 애플리케이션의 데이터 저장 경로
         env:
         - name: DJANGO_SECRET_KEY
-          value: "qf+-jk+h4d+9@2r!%=frdh!ng7ek@l!54%^sqskttk(rvd%&so"
+          value: "xq@l%m@+$-&lg)*+&-rchwne+!fj@)t*(8u5h3#h=um%lun2iw"
         - name: DJANGO_ALLOWED_HOSTS
           value: "*"
         - name: POSTGRES_DB
@@ -38,14 +35,8 @@ spec:
         - name: POSTGRES_PORT
           value: "5432"
         - name: DJANGO_SUPERUSER_USERNAME
-          value: "cloud"
-        - name: DJANGO_SUPERUSER_PASSWORD
-          value: "dkagh"
+          value: "admin"
         - name: DJANGO_SUPERUSER_EMAIL
-          value: "cloud@gmail.com"
-        - name: SKIP_SUPERUSER_CREATION
-          value: "True"
-            #volumes:
-            #- name: django-data
-            #persistentVolumeClaim:
-            #claimName: django-pvc
+          value: "admin@example.com"
+        - name: DJANGO_SUPERUSER_PASSWORD
+          value: "admin"volumes:
