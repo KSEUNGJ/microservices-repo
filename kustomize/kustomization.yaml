@@ -13,12 +13,12 @@ secretGenerator:
   literals:
   - password=$MysqlDbPW
 
-    #components:
+components:
   #- components/cadvisor
   #- components/rbac
   #- components/prometheus
   #- components/grafana
   #- components/node-exporter
   #- components/alertmanager
-  #- components/ingress-nginx
-  #- components/ingress
+- components/ingress-nginx
+- components/ingress
