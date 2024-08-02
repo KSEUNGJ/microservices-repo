@@ -33,13 +33,13 @@ metadata:
   namespace: app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
     - shop.providehighvalue.com
-    - blog.providehighvalue.com
     secretName: app-tls
   ingressClassName: nginx
   rules:
@@ -53,6 +53,24 @@ spec:
             name: frontend
             port:
               number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blog-ingress
+  namespace: blog
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  tls:
+  - hosts:
+    - blog.providehighvalue.com
+    secretName: blog-tls
+  ingressClassName: nginx
+  rules:
   - host: blog.providehighvalue.com
     http:
       paths:
@@ -62,7 +80,7 @@ spec:
           service:
             name: wordpress
             port:
-              number: 80
+              number: 80                
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -71,7 +89,8 @@ metadata:
   namespace: game
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
