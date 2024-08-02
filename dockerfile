@@ -1,3 +1,4 @@
+# Dockerfile 예시
 # Use the official Python image from the Docker Hub
 FROM python:3.10-slim
 
@@ -18,9 +19,6 @@ COPY . /app/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
-
-# Copy the entrypoint script into the container
-COPY entrypoint.py /app/entrypoint.py
 
 # Expose the port that the application will run on
 EXPOSE 8000
