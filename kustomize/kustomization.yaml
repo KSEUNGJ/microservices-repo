@@ -11,7 +11,7 @@ secretGenerator:
 - name: mysql-pass
   namespace: blog
   literals:
-  - password=$MysqlDbPW
+  - password=dkagh
 
 components:
 - components/cadvisor

@@ -55,18 +55,12 @@ spec:
           value: wordpress-mysql
         - name: WORDPRESS_DB_USER
           value: wordpress
-        - name: WORDPRESS_DB_NAME
-          value: wordpress
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-pass
               key: password
-        - name: WORDPRESS_CONFIG_EXTRA
-          value: |
-            define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
-            define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
-        - name: WORDPRESS_DB_USER
+        - name: WORDPRESS_DB_NAME
           value: wordpress
         ports:
         - containerPort: 80
@@ -74,13 +68,7 @@ spec:
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
-        - name: wordpress-config
-          mountPath: /var/www/html/wp-config.php
-          subPath: wp-config.php
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
-      - name: wordpress-config
-        configMap:
-          name: wordpress-config
