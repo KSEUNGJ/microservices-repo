@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
 - mysql-deployment.yaml
 - wordpress-deployment.yaml
+- wordpress-config.yaml
