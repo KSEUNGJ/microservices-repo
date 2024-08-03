@@ -13,35 +13,6 @@ spec:
   nfs:
     server: 52.78.1.170 # EC2 인스턴스의 퍼블릭 IP
     path: "/var/nfs/general"  # 확인된 NFS 공유 경로
-
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-nfs-pv
-  nmaespace: blog
-spec:
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 52.78.1.170
-    path: "/var/nfs/mysql/"
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: wp-nfs-pv
-  namespace: blog
-spec:
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 52.78.1.170
-    path: "/var/nfs/wordpress"
 ---
 apiVersion: v1
 kind: PersistentVolume

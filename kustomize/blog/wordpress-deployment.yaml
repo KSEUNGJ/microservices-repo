@@ -13,20 +13,6 @@ spec:
     tier: frontend
   type: ClusterIP
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wp-pv-claim
-  namespace: blog
-  labels:
-    app: wordpress
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -47,42 +33,17 @@ spec:
         app: wordpress
         tier: frontend
     spec:
-      initContainers:
-      - name: update-wp-config
-        image: busybox
-        command:
-        - /bin/sh
-        - /scripts/init.sh
-        env:
-        - name: WORDPRESS_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-pass
-              key: password
-        volumeMounts:
-        - name: wordpress-persistent-storage
-          mountPath: /var/www/html
-        - name: init-script
-          mountPath: /scripts
       containers:
-      - image: wordpress:6.2.1-apache
+      - image: wordpress:5.8-apache
         name: wordpress
         env:
-        - name: WORDPRESS_CONFIG_EXTRA
-          value: |
-            define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
-            define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
-        - name: WORDPRESS_DB_USER
-          value: wordpress
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-pass
+              name: mysql-secret
               key: password
-        - name: WORDPRESS_DB_NAME
-          value: wordpress
         ports:
         - containerPort: 80
           name: wordpress
@@ -92,8 +53,4 @@ spec:
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
-          claimName: wp-pv-claim
-      - name: init-script
-        configMap:
-          name: wordpress-init-script
-          defaultMode: 0755
+          claimName: wordpress-pvc
