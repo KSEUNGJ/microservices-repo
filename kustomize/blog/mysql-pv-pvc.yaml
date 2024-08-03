@@ -13,6 +13,9 @@ spec:
   nfs:
     server: 52.78.1.170
     path: "/mnt/nfs_share/blog/mysql"
+  mountOptions:
+    - nfsvers=4.1
+    - rw
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

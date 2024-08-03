@@ -36,6 +36,10 @@ spec:
       containers:
       - image: mysql:5.7
         name: mysql
+        securityContext:
+          runAsUser: 999
+          runAsGroup: 999
+          fsGroup: 999  
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
