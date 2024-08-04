@@ -34,7 +34,7 @@ spec:
         tier: mysql
     spec:
       containers:
-      - image: mysql:8.0  # 버전을 8.0으로 업그레이드
+      - image: mysql:8.0
         name: mysql
         securityContext:
           runAsUser: 999
@@ -46,33 +46,37 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: password
+        - name: MYSQL_DATABASE
+          value: wordpress
+        - name: MYSQL_USER
+          value: wordpress
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: wordpress-password
         - name: MYSQL_MAX_ALLOWED_PACKET
           value: "64M"
+        - name: MYSQL_ROOT_HOST
+          value: "%"
         ports:
         - containerPort: 3306
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
-        resources:
-          requests:
-            cpu: "500m"
-            memory: "512Mi"
-          limits:
-            cpu: "1"
-            memory: "1Gi"
         livenessProbe:
-          tcpSocket:
-            port: 3306
+          exec:
+            command: ["mysqladmin", "ping", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
         readinessProbe:
-          tcpSocket:
-            port: 3306
-          initialDelaySeconds: 5
+          exec:
+            command: ["mysql", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}", "-e", "SELECT 1"]
+          initialDelaySeconds: 30
           periodSeconds: 10
-          timeoutSeconds: 1
+          timeoutSeconds: 5
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
