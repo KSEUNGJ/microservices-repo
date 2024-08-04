@@ -34,24 +34,45 @@ spec:
         tier: mysql
     spec:
       containers:
-      - image: mysql:5.7
+      - image: mysql:8.0  # 버전을 8.0으로 업그레이드
         name: mysql
         securityContext:
           runAsUser: 999
           runAsGroup: 999
-          fsGroup: 999  
+          fsGroup: 999
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: password
+        - name: MYSQL_MAX_ALLOWED_PACKET
+          value: "64M"
         ports:
         - containerPort: 3306
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 1
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
