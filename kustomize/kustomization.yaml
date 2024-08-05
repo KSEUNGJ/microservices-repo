@@ -7,11 +7,6 @@ resources:
 - nfs
 - blog
 
-secretGenerator:
-- name: mysql-pass
-  namespace: blog
-  literals:
-  - password=$MysqlDbPW
 
 components:
 - components/cadvisor
