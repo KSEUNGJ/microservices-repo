@@ -5,17 +5,17 @@ metadata:
   namespace: main
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      #cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
-    - son7.site
+    - main.providehighvalue.com
     secretName: main-tls
   ingressClassName: nginx
   rules:
-  - host: son7.site
+  - host: main.providehighvalue.com
     http:
       paths:
       - path: /
@@ -33,17 +33,17 @@ metadata:
   namespace: app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      #cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
-    - shop.son7.site
+    - shop.providehighvalue.com
     secretName: app-tls
   ingressClassName: nginx
   rules:
-  - host: shop.son7.site
+  - host: shop.providehighvalue.com
     http:
       paths:
       - path: /
@@ -61,17 +61,17 @@ metadata:
   namespace: blog
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      #cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
-    - blog.son7.site
+    - blog.providehighvalue.com
     secretName: blog-tls
   ingressClassName: nginx
   rules:
-  - host: blog.son7.site
+  - host: blog.providehighvalue.com
     http:
       paths:
       - path: /
@@ -89,17 +89,17 @@ metadata:
   namespace: game
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      #cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
   - hosts:
-    - 2048.son7.site
+    - 2048.providehighvalue.com
     secretName: game-tls
   ingressClassName: nginx
   rules:
-  - host: 2048.son7.site
+  - host: 2048.providehighvalue.com
     http:
       paths:
       - path: /
