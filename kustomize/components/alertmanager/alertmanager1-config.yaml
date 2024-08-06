@@ -16,8 +16,8 @@ data:
     receivers:
     - name: 'slack-notifications'
       slack_configs:
-      - api_url: 'https://hooks.slack.com/services/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'  # 주신 슬랙 웹훅 URL
-        channel: '#근두운-프로젝트'  # 알림을 받을 슬랙 채널 이름
+      - api_url: 'https://hooks.slack.com/services/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'
+        channel: '#근두운-프로젝트'
         send_resolved: true
         title: '{{ .GroupLabels.alertname }}'
         text: >-
