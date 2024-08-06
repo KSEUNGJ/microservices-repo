@@ -71,7 +71,7 @@ spec:
     secretName: blog-tls
   ingressClassName: nginx
   rules:
-  - host: wp.son7.site
+  - host: blog.providehighvalue.com
     http:
       paths:
       - path: /
