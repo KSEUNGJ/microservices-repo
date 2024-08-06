@@ -21,7 +21,6 @@ data:
     - name: 'slack-notifications'
       slack_configs:
       - api_url: 'https://hooks.slack.com/services/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'
-        channel: '#근두운-프로젝트'
         send_resolved: true
         title: '{{ .GroupLabels.alertname }} - {{ .GroupLabels.severity }}'
         text: >-
