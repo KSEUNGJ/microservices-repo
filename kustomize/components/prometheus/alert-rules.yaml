@@ -16,7 +16,6 @@ data:
         annotations:
           summary: High CPU usage detected
           description: CPU usage is above 80% on {{ $labels.instance }}
-      
       - alert: HighMemoryUsage
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 80
         for: 5m
@@ -25,7 +24,6 @@ data:
         annotations:
           summary: High memory usage detected
           description: Memory usage is above 80% on {{ $labels.instance }}
-      
       - alert: HighDiskUsage
         expr: 100 - ((node_filesystem_avail_bytes{mountpoint="/"} * 100) / node_filesystem_size_bytes{mountpoint="/"}) > 80
         for: 5m
@@ -34,3 +32,11 @@ data:
         annotations:
           summary: High disk usage detected
           description: Disk usage is above 80% on {{ $labels.instance }}
+      - alert: NodeDown
+        expr: up{job="node-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Node down detected"
+          description: "Node {{ $labels.instance }} has been down for more than 1 minute."
