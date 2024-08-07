@@ -11,11 +11,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - main.providehighvalue.com
+    - son7.site
     secretName: main-tls
   ingressClassName: nginx
   rules:
-  - host: main.providehighvalue.com
+  - host: son7.site
     http:
       paths:
       - path: /
@@ -39,11 +39,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - shop.providehighvalue.com
+    - shop.son7.site
     secretName: app-tls
   ingressClassName: nginx
   rules:
-  - host: shop.providehighvalue.com
+  - host: shop.son7.site
     http:
       paths:
       - path: /
@@ -67,11 +67,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - blog.providehighvalue.com
+    - wp.son7.site
     secretName: blog-tls
   ingressClassName: nginx
   rules:
-  - host: blog.providehighvalue.com
+  - host: wp.son7.site
     http:
       paths:
       - path: /
@@ -95,11 +95,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - 2048.providehighvalue.com
+    - 2048.son7.site
     secretName: game-tls
   ingressClassName: nginx
   rules:
-  - host: 2048.providehighvalue.com
+  - host: 2048.son7.site
     http:
       paths:
       - path: /
